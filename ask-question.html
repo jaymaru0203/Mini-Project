@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask a Question</title>
+
+    <!-- Bootstrap CDN -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      #my-nav.bg-dark {
+        background-color: #2a2424 !important;
+        height: 4rem;
+      }
+      #my-nav .nav-link {
+        font-size: 1.4rem;
+        padding: 1rem;
+      }
+      #my-nav .logo {
+        color: #e5564d;
+        font-weight: bold;
+      }
+      #my-nav .my-search {
+        border-radius: 0;
+        height: 2.15rem;
+        width: 20rem;
+        margin-left: 1rem;
+      }
+      #my-nav .btn-success {
+        background-color: #e5564d;
+        border-radius: 0;
+        border: none;
+      }
+      #my-nav .my-icon {
+        padding: 0 1rem;
+      }
+      #my-nav .form-inline {
+        margin-right: 18rem;
+      }
+      #my-nav .rounded-circle {
+        margin-right: 1rem;
+      }
+      #my-form.form-container {
+        padding: 1.7rem 27rem 0;
+      }
+      .heading {
+        text-align: center;
+        padding: 3rem 4rem 0;
+      }
+      #my-form .col-6 {
+        padding: 0 !important;
+      }
+      #my-form .form-select {
+        padding: 0 3.5rem;
+      }
+      #my-form select {
+        border: none;
+      }
+      #my-form .col,
+      #my-form .col-6 {
+        border: 1px solid rgb(207, 207, 207);
+      }
+      #my-form .col {
+        border-left: none;
+      }
+      #my-form .my-btn {
+        background-color: #e5564d;
+        color: white;
+        font-weight: 700;
+      }
+      #my-form .my-btn:hover {
+        background-color: #b33229;
+      }
+    </style>
+
+    <!-- Bootstrap Scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="my-nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/">
+          <!-- <img
+            id="logo"
+            src="images/logo.png"
+            id="logo"
+            style="zoom: 0.6; margin: 12px auto"
+          /> -->
+        </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link logo" href="/">Logo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Contact</a>
+          </li>
+          <form class="form-inline my-2 my-lg-0">
+            <input
+              class="form-control mr-sm-2 height my-search"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button
+              class="btn btn-success my-2 my-sm-0 height text-center"
+              type="submit"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+          <li class="nav-item">
+            <a class="nav-link" href="/"
+              ><i class="my-icon fas fa-plus"></i>Ask</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/"
+              ><i class="my-icon far fa-comment-alt"></i>Chat</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/"
+              ><img
+                src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                width="35"
+                height="35"
+                class="rounded-circle"
+              />esha.vats</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Form -->
+    <div>
+      <div class="heading">
+        <h1>Ask a Question</h1>
+      </div>
+      <form id="my-form" class="form-container">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Description</label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="5"
+            placeholder="Write here..."
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Who should answer it?</label
+          >
+          <div class="container my-2">
+            <div class="row">
+              <div class="col-6">
+                <select id="inputState" class="form-select py-2">
+                  <option selected>Select year of study</option>
+                  <option value="1">FY</option>
+                  <option value="2">SY</option>
+                  <option value="3">TY</option>
+                  <option value="4">LY</option>
+                </select>
+              </div>
+              <div class="col">
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gridRadios"
+                    id="gridRadios1"
+                    value="option1"
+                    checked
+                  />
+                  <label class="form-check-label my-label" for="gridRadios1">
+                    Student
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gridRadios"
+                    id="gridRadios1"
+                    value="option1"
+                    checked
+                  />
+                  <label class="form-check-label my-label" for="gridRadios1">
+                    Teacher
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-5 pt-3 mx-5">
+          <button type="button" class="btn my-btn btn-lg btn-block">
+            Add Question
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
