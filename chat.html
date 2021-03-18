@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://kit.fontawesome.com/a294c61896.js" crossorigin="anonymous"></script> -->
+    <title>Chat</title>
+    <style>
+
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+        }
+        .sidebar {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          background-color: #fff;
+          overflow-x: hidden;
+          transition: 0.3s;
+          box-shadow: 1px 0px 3px 0px #888;
+          overflow-y: auto;
+        }
+        a{
+            all: unset;
+        }
+        
+        .sidebar a {
+          padding: 3% 5%;
+          text-decoration: none;
+          font-size: 22px;
+          color: #777;
+          display: block;
+          transition: 0.3s;
+          cursor: pointer;
+          margin: 0;
+        }
+        
+        .sidebar a:hover {
+          color: #999;
+          background: #eee;
+        }
+        #searchForm{
+            width: 100%;
+            background: #eee;
+            font-size: 22px;
+            color: #fff;
+            box-shadow: 0px 1px 3px 0px #888;
+        }
+
+        #searchContact{
+            border: 0.1px solid #999;
+            width: 80%;
+            border-radius: 25px;
+            padding: 2%;
+            font-size: 16px;
+            margin: 3% 5%;
+            outline: none;
+            opacity: 0.7;
+        }
+
+        #searchButton{
+            border: none;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        hr{
+            margin: 0 auto;
+            border-bottom: 0.1px solid #fefefe;
+            opacity: 0.2;
+        }
+        
+        .openbtn {
+          font-size: 22px;
+          cursor: pointer;
+          color: #444;
+          padding: 10px 15px;
+          border: none;
+          outline: none;
+          margin-right: 5%;
+          background: none;
+        }
+
+        #profilePicture{
+            border: none;
+            border-radius: 50%;
+            width: 12%;
+            margin: 0;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+
+        #notif{
+            background: seagreen;
+            border-radius: 50%;
+            float: right;
+            color: #fff;
+            font-size: 12px;
+            padding: 5% 10%;
+            margin-bottom: 5%;
+        }
+
+        #chatDate{
+            font-size: 18px;
+            float: right;
+            margin: 0 2% 0 0 ;
+        }
+        
+        #main {
+          background: #eee;
+          transition: margin-left .3s;
+          padding: 0;
+          min-height: 95vh; /* CHANGE THIS ACCORDING TO NAVBAR HEIGHT */
+          overflow-x: auto;
+          overflow-y: auto;
+        }
+
+        #topbar{
+            width: 100%;
+            background: #ddd;
+            font-size: 22px;
+            color: #444;
+            padding: 0.5%;
+            box-shadow: 0px 1px 3px 0px #888;
+        }
+
+        #topbar #profilePicture{
+            width: 45px;
+            margin: 0 1%;
+            float: right;
+        }
+
+        #chatForm{
+            width: 100%;
+            margin: 0;
+            background: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            overflow: hidden;
+        }
+        #message{
+            padding: 10px;
+            color: #444;
+            font-size: 18px;
+            width: 85%;
+        }
+        #submit{
+            width: 13%;
+            background: #e7584f;
+            color: #fff;
+            font-size: 21px;
+            border: none;
+            cursor: pointer;
+            padding: 10px 5px;
+        }
+
+        #chatContainer{
+            width: 100%;
+            display: inline-flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-bottom: 10%;
+        }
+
+        .chatMessage{
+            background: #fff;
+            width: 40%;
+            padding: 1%;
+            font-size: 18px;
+            color: #444;
+            margin: 1% 0 1% 1.5%;
+            border-radius: 15px 15px 15px 0px;
+            box-shadow: 1px 1px 3px 0px #999;
+        }
+        .chatMessage2{
+            background: #fbc6c4;
+            width: 40%;
+            padding: 1%;
+            font-size: 18px;
+            color: #444;
+            margin: 1% 0 1% 1.5%;
+            border-radius: 15px 15px 0px 15px;
+            box-shadow: -1px 1px 3px 0px #999;
+            align-self: flex-end;
+        }
+        
+        @media screen and (max-width: 540px){
+            #chatForm{
+                zoom: 0.8;
+            }
+            #message{
+                width: 75%;
+            }
+            #submit{
+                width: 20%;
+            }
+        }
+        @media screen and (max-width: 450px) {
+          .sidebar {padding-top: 15px;}
+          .sidebar a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar" style="width: 100%; height: 5vh; background: #e7584f;"></div>
+    <div id="mySidebar" class="sidebar">
+        <form id="searchForm" action="#" method="POST">
+            <input type="text" name="searchContact" id="searchContact" placeholder="Search Contact">
+            <button type="submit" id="searchButton">
+                <img src="https://images.vexels.com/media/users/3/132068/isolated/preview/f9bb81e576c1a361c61a8c08945b2c48-search-icon-by-vexels.png" style="height: 26px; outline: none; border: none;">
+            </button>
+        </form>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jay Maru <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Mohini Panchal <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Esha Vats <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jubin Kamdar <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jay Maru <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Mohini Panchal <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Esha Vats <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jubin Kamdar <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jay Maru <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Mohini Panchal <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Esha Vats <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+        <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jubin Kamdar <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr>
+      </div>
+      
+      <div id="main">
+        <div id="topbar">
+            <button class="openbtn" onclick="toggleNav()">☰</button>
+            <img src="https://via.placeholder.com/150" id="profilePicture"> John Doe
+            <form action="#" method="post" id="chatForm">
+                <input type="text" name="message" id="message" placeholder="Type your Message..">
+                <button type="submit" id="submit">Send</button>
+            </form>
+        </div>
+        <div id="chatContainer">
+            <span class="chatMessage">Hello Jay</span>
+            <span class="chatMessage2">Hey John How are You?</span>
+            <span class="chatMessage">I am good, I actually wanted to ask you something. We have to choose an Elective Course but I was confused, can you suggest which one should I pick?</span>
+            <span class="chatMessage2">Do you like Designing?</span>
+            <span class="chatMessage">Yes</span>
+            <span class="chatMessage">I like the work of Front End development</span>
+            <span class="chatMessage2">Okay so you should take up the UI/UX Design Elective</span>
+            <span class="chatMessage">Great Suggestion. Thanks!</span>
+
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <script>
+      function toggleNav() {
+        if(document.getElementById("mySidebar").style.width == 0 || document.getElementById("mySidebar").style.width == "0px"){
+            if(window.innerWidth>450){
+            document.getElementById("mySidebar").style.width = "30%";
+            document.getElementById("main").style.marginLeft = "30%";
+        }
+        else{
+            document.getElementById("mySidebar").style.width = "80%";
+            document.getElementById("main").style.marginLeft = "80%";
+        }}
+        else{
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+        }
+      }
+      </script>
+</body>
+</html>
