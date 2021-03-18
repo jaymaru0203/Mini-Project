@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ask a Question</title>
+    <title>My Profile</title>
 
     <!-- Bootstrap CDN -->
     <link
@@ -46,36 +46,30 @@
       #my-nav .rounded-circle {
         margin-right: 1rem;
       }
-      .heading {
-        text-align: center;
-        padding: 3rem 4rem 0;
+      #prof-container .my-details {
+        text-align: right;
+        color: #e5564d;
       }
-      #my-form.form-container {
-        padding: 1.7rem 27rem 0;
-      }
-      #my-form .col-6 {
-        padding: 0 !important;
-      }
-      #my-form .form-select {
-        padding: 0 3.5rem;
-      }
-      #my-form select {
-        border: none;
-      }
-      #my-form .col,
-      #my-form .col-6 {
-        border: 1px solid rgb(207, 207, 207);
-      }
-      #my-form .col {
-        border-left: none;
-      }
-      #my-form .my-btn {
-        background-color: #e5564d;
-        color: white;
+      #prof-container .name {
         font-weight: 700;
       }
-      #my-form .my-btn:hover {
-        background-color: #b33229;
+      #prof-container .username {
+        color: #636262;
+      }
+      #prof-container hr {
+        border: 1px solid #acacac;
+      }
+      #prof-container .prof-nav-link {
+        color: #636262;
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+      #prof-container .prof-nav-link.active {
+        color: #e5564d;
+      }
+      #prof-container .form-select {
+        padding: 0 7rem;
+        border-color: #acacac;
       }
     </style>
 
@@ -173,84 +167,75 @@
       </div>
     </nav>
 
-    <!-- Form -->
-    <div>
-      <div class="heading">
-        <h1>Ask a Question</h1>
-      </div>
-      <form id="my-form" class="form-container">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Title</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="name@example.com"
+    <div id="prof-container" class="m-5 p-5">
+      <div class="row">
+        <div class="col-2">
+          <img
+            src="http://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture-1024x1024.jpg"
+            width="150"
+            height="150"
+            class="rounded-circle"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label"
-            >Description</label
-          >
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="5"
-            placeholder="Write here..."
-          ></textarea>
+        <div class="col-6">
+          <h3 class="mt-4 name">Esha Vats</h3>
+          <h4 class="username">esha.vats</h4>
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label"
-            >Who should answer it?</label
+        <div class="col-4 my-details">
+          <h4 class="mt-4">Year: Third Year</h4>
+          <h4>Branch: Information Technology</h4>
+        </div>
+      </div>
+      <hr class="mt-5" />
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active prof-nav-link pl-0" href="#"
+            >Edit Profile</a
           >
-          <div class="container my-2">
-            <div class="row">
-              <div class="col-6">
-                <select id="inputState" class="form-select py-2">
-                  <option selected>Select year of study</option>
-                  <option value="1">FY</option>
-                  <option value="2">SY</option>
-                  <option value="3">TY</option>
-                  <option value="4">LY</option>
-                </select>
-              </div>
-              <div class="col">
-                <div class="form-check mt-2">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios1"
-                    value="option1"
-                    checked
-                  />
-                  <label class="form-check-label my-label" for="gridRadios1">
-                    Student
-                  </label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-check mt-2">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gridRadios"
-                    id="gridRadios1"
-                    value="option1"
-                    checked
-                  />
-                  <label class="form-check-label my-label" for="gridRadios1">
-                    Teacher
-                  </label>
-                </div>
-              </div>
-            </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link prof-nav-link" href="#">Your Questions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link prof-nav-link" href="#">Your Answers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link prof-nav-link" href="#">Settings</a>
+        </li>
+      </ul>
+      <form class="edit-form mt-4">
+        <div class="form-row">
+          <div class="col pr-5 pl-4">
+            <label for="" class="form-label">Name</label>
+            <input type="text" class="form-control" value="Esha Vats" />
+          </div>
+          <div class="col pr-5 pl-4">
+            <label for="" class="form-label">Username</label>
+            <input type="text" class="form-control" value="esha.vats" />
           </div>
         </div>
-        <div class="px-5 pt-3 mx-5">
-          <button type="button" class="btn my-btn btn-lg btn-block">
-            Add Question
-          </button>
+        <div class="form-row mt-4">
+          <div class="col pr-5 pl-4">
+            <label for="" class="form-label">Branch</label>
+            <br />
+            <select id="inputState" class="form-select py-2">
+              <option value="1">Computer Science</option>
+              <option value="2">Information Technology</option>
+              <option value="3">Electronics and Telecommunications</option>
+              <option value="4">Mechanical</option>
+              <option value="5">Electronics</option>
+            </select>
+          </div>
+          <div class="col pr-5 pl-4">
+            <label for="" class="form-label">Year</label>
+            <br />
+            <select id="inputState" class="form-select py-2">
+              <option value="1">First Year</option>
+              <option value="2">Second Year</option>
+              <option value="3">Third Year</option>
+              <option value="4">Last Year</option>
+            </select>
+          </div>
         </div>
       </form>
     </div>
