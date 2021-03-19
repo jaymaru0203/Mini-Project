@@ -41,7 +41,7 @@
         padding: 0 1rem;
       }
       #my-nav .form-inline {
-        margin-right: 18rem;
+        margin-right: 17rem;
       }
       #my-nav .rounded-circle {
         margin-right: 1rem;
@@ -57,7 +57,7 @@
         color: #636262;
       }
       #prof-container hr {
-        border: 1px solid #acacac;
+        border: 1px solid #cacaca;
       }
       #prof-container .prof-nav-link {
         color: #636262;
@@ -67,9 +67,16 @@
       #prof-container .prof-nav-link.active {
         color: #e5564d;
       }
-      #prof-container .form-select {
-        padding: 0 7rem;
-        border-color: #acacac;
+      #prof-container .my-btn {
+        background-color: #e5564d;
+        color: white;
+        font-weight: 700;
+      }
+      #prof-container .my-btn:hover {
+        background-color: #b33229;
+      }
+      #prof-container .btn-div {
+        padding: 0 23rem;
       }
     </style>
 
@@ -167,7 +174,7 @@
       </div>
     </nav>
 
-    <div id="prof-container" class="m-5 p-5">
+    <div id="prof-container" class="m-5 px-5 pb-0">
       <div class="row">
         <div class="col-2">
           <img
@@ -218,7 +225,7 @@
           <div class="col pr-5 pl-4">
             <label for="" class="form-label">Branch</label>
             <br />
-            <select id="inputState" class="form-select py-2">
+            <select id="inputState" class="form-select form-control py-2">
               <option value="1">Computer Science</option>
               <option value="2">Information Technology</option>
               <option value="3">Electronics and Telecommunications</option>
@@ -229,13 +236,28 @@
           <div class="col pr-5 pl-4">
             <label for="" class="form-label">Year</label>
             <br />
-            <select id="inputState" class="form-select py-2">
+            <select id="inputState" class="form-select form-control py-2">
               <option value="1">First Year</option>
               <option value="2">Second Year</option>
               <option value="3">Third Year</option>
               <option value="4">Last Year</option>
             </select>
           </div>
+        </div>
+        <div class="form-row mt-4">
+          <div class="col pr-5 pl-4">
+            <label for="" class="form-label">Change Password</label>
+            <input type="password" class="form-control" value="mypassword" />
+          </div>
+          <div class="col pr-5 pl-4">
+            <label for="" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" value="mypassword" />
+          </div>
+        </div>
+        <div class="mt-5 btn-div">
+          <button type="button" class="btn my-btn btn-lg btn-block">
+            Save Changes
+          </button>
         </div>
       </form>
     </div>
