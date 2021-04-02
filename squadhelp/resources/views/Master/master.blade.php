@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
   <title>@yield('title')</title>
   <style>
@@ -20,6 +25,10 @@ body{
   background: #f2f2f2;
 }
 nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
   background: black;
   display: flex;
   flex-wrap: wrap;
@@ -271,6 +280,201 @@ nav .logo.space{
 .content .space{
   margin: 10px 0;
 }
+.left-container{
+            height: 90vh;
+            width: 20%;
+            position: fixed;
+            top: 3.7rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid black;
+      }
+      .left-container>div:hover{
+        transition: .3s ease-in-out;
+      }
+
+      .left-container>div:hover{
+        background-color: black;
+        cursor: pointer;
+        color:black;
+      }
+
+      .circle{
+        height: 50px;
+        width: 50px;
+        border: 1px solid rgb(179, 2, 2);
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .circle img{
+        width: 100%;
+        height: 100%;
+        object-fit: conver;
+        border-radius: 50%;
+      }
+
+      .year{
+        font-weight: 500;
+      }
+
+      .badge-notify{
+        background:red;
+        position:relative;
+        top: -20px;
+        left: -20px;
+        border-radius: 50%;
+        color: white;
+    }
+
+    .right-container{
+      width: 70%;
+      margin-top: 6rem;
+      margin-left: 30%;
+    }
+
+
+    .post-container{
+      background-color: rgb(238, 238, 238);
+      border-radius: 5px;
+      width: 90%;
+      padding: 1.5rem 1.5rem;
+    }
+
+    .post-container img{
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .userdetails-container{
+      display: flex;
+    }
+
+    .user-image{
+      margin-top: .5rem;
+    }
+
+    .post-container h1{
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      margin-top: .5rem;
+    }
+
+    .post-container h2{
+      font-size: .7rem;
+      opacity: .8;
+      margin-left: 1rem;
+    }
+
+    .question-container{
+      margin-top: 1rem;
+    }
+
+    .posted{
+      margin-top: 2rem;
+      position: relative;
+    }
+
+    .post-date{
+      position: absolute;
+      right: 2%;
+      top: 15%;
+    }
+
+    .post-date p{
+      color: red;
+      font-weight: 500;
+    }
+
+    .question-info{
+      margin-top: .5rem;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .votes{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .votes h4{
+      font-size: 15px;
+    }
+
+    .votes i{
+      cursor: pointer;
+      transition: .3s ease-in-out;
+    }
+
+    .votes i:hover{
+      background-color: rgb(165, 165, 165);
+      color: white;
+      border-radius: 50%;
+    }
+
+    .question p{
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .message-icon{
+      position: relative;
+      color: black;
+      font-size: 25px;
+    }
+
+    .message-count{
+      position: absolute;
+      top: 13%;
+      left: 15%;
+      font-size: 15px;
+      color: white;
+    }
+
+    
+    @media screen and (max-width: 650px) {
+        .left-container{
+          display: none;
+        }
+
+        .post-date{
+          font-size: .8rem;
+        }
+
+        .post-container h1{
+          font-size: 1.2rem;
+        }
+
+        .post-container h2{
+          font-size: .6rem;
+        }
+
+        .right-container{
+          width: 100%;
+          margin-left: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .post-container{
+          width: 90%;
+        }
+
+        .question p{
+          font-size: .8rem;
+        }
+
+        .votes h4{
+          font-size: 12px;
+        }
+
+      }
   </style>
   <body>
 
