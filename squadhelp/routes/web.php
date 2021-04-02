@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuestionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Master/master');
+    return view('feed');
 });
+
+Route::get('/ask', function () {
+    return view('ask');
+});
+Route::post('question', [QuestionController::class, "postQuestion"]);
+
+
