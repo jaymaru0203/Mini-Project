@@ -1,10 +1,9 @@
-
 @extends('Master.master')
 
 @section('title','Feed')
 
 @section('content')
-<div class="left-container">
+<!-- <div class="left-container">
 
 <div class="col-sm p-2 d-flex justify-content-center align-items-center">
   <div class="circle"><img src="{{URL::asset('/images/fy.png')}}" alt=""></div>
@@ -36,92 +35,97 @@
     <span class="year">Other</span>
 </div>
 
-</div>
+</div> -->
 
     <div class="right-container">
-
+      
       <!-- ask question container -->
-      <div class="post-container">
-
-        <div class="userdetails-container">
-          <div class="user-image">
-            <img src="https://cdn.peoople.app/image/profile/truster/1879448_22022020051811322524_opt.jpg" alt="">
+      <div class="post-container filter">
+        <h1 class="filter-heading">Filter Results</h1>
+        <form action="filter" method="GET">
+          <div class="filter-options">
+            <input type="radio" name="filterData" id="placements" class="checkbox" value="Placements">
+            <label for="placements">Placements</label>
           </div>
-  
-          <div class="user-details">
-            <h1>Jubin Kamdar</h1>
-            <h2>jubin.kamdar@somaiya.edu</h2>
+          <div class="filter-options">
+            <input type="radio" name="filterData" id="cocurricular" class="checkbox" value="Co-curricular">
+            <label for="cocurricular">Co-Curricular</label>
           </div>
-        </div>
-
-        <div class="question-container">
-
-          <form action="postquestion" method="GET">
-
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Ask a Question" aria-label="Ask a Question" aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
-            </div>
-            
-          </form>
-
-        </div>
+          <div class="filter-options">
+            <input type="radio" name="filterData" id="masters" class="checkbox" value="Masters">
+            <label for="masters">Masters</label>
+          </div>
+          <div class="filter-options">
+            <input type="radio" name="filterData" id="hackathons" class="checkbox" value="Hackathons">
+            <label for="hackathons">Hackathons</label>
+          </div>
+          <div class="filter-options">
+            <input type="radio" name="filterData" id="all" class="checkbox" value="all">
+            <label for="all">All</label>
+          </div>
+          <div class="filter-options">
+            <button type="submit" class="filter-btn">Filter</button>
+          </div>
+        </form>
       </div>
 
       <!-- posted questions -->
+      @foreach($question as $q)
       <div class="post-container posted">
 
-        <div class="userdetails-container">
-          <div class="user-image">
-            <img src="https://cdn.peoople.app/image/profile/truster/1879448_22022020051811322524_opt.jpg" alt="">
-          </div>
-  
-          <div class="user-details">
-            <h1>Esha Vats</h1>
-            <h2>esha.vats@somaiya.edu</h2>
-          </div>
+      <div class="userdetails-container">
+        <div class="user-image">
+          <img src="https://cdn.peoople.app/image/profile/truster/1879448_22022020051811322524_opt.jpg" alt="">
+        </div>
 
-          <div class="post-date">
-            <p>1 March,2021 | 2:30pm</p>
-          </div>
-            
-          </div>
+        <div class="user-details">
+          <h1>Esha Vats</h1>
+          <h2>{{ $q->user_email }}</h2>
+        </div>
 
-        <!-- question -->
-        <div class="row question-info">
-
-          <div class="col-1 votes">
-            <i class="fas fa-arrow-up"></i>
-            <h4>20</h4>
-            <i class="fas fa-arrow-down"></i>
-          </div>
+        <div class="post-date">
+          <p>{{ $q->created_at }}</p>
+        </div>
           
-          <div class="col-11 question">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, voluptas.?</p>
-          </div>
+      </div>
 
+      <!-- question -->
+      <div class="row question-info">
+
+        <div class="col-1 votes">
+          <i class="fas fa-arrow-up"></i>
+          <h4>20</h4>
+          <i class="fas fa-arrow-down"></i>
         </div>
         
-
-        <div class="question-container">
-
-          <form action="postquestion" method="GET">
-            
-            
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary" type="button">
-                  <i class="fas fa-comment-alt message-icon"><span class="message-count">15</span></i>
-                </button>
-              </div>
-              <input type="text" class="form-control" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
-            </div>
-            
-          </form>
-          
+        <div class="col-11 question">
+          <p>{{ $q->question_content }}</p>
         </div>
+
       </div>
+
+
+      <div class="question-container">
+
+        <form action="postanswer" method="GET">
+          <input type="hidden" name="question_id" value="{{$q->question_id}}">
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">
+                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon"></i></a>
+              </button>
+            </div>
+            <input type="text" class="form-control" name="answer" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
+          </div>
+          
+        </form>
+        
+      </div>
+      </div>
+
+      @endforeach
  
 
     </div>

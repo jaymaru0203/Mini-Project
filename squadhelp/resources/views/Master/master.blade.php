@@ -330,7 +330,7 @@
       margin: 10px 0;
     }
 
-    .left-container {
+    /* .left-container {
       height: 90vh;
       width: 20%;
       position: fixed;
@@ -376,12 +376,15 @@
       left: -20px;
       border-radius: 50%;
       color: white;
-    }
+    } */
 
     .right-container {
-      width: 70%;
+      width: 100%;
       margin-top: 6rem;
-      margin-left: 30%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
     }
 
 
@@ -454,17 +457,12 @@
 
     .votes h4 {
       font-size: 15px;
+      margin-top:10px;
     }
 
     .votes i {
       cursor: pointer;
       transition: .3s ease-in-out;
-    }
-
-    .votes i:hover {
-      background-color: rgb(165, 165, 165);
-      color: white;
-      border-radius: 50%;
     }
 
     .question p {
@@ -475,15 +473,7 @@
     .message-icon {
       position: relative;
       color: black;
-      font-size: 25px;
-    }
-
-    .message-count {
-      position: absolute;
-      top: 13%;
-      left: 15%;
-      font-size: 15px;
-      color: white;
+      font-size: 20px;
     }
 
 
@@ -524,6 +514,10 @@
       .votes h4 {
         font-size: 12px;
       }
+
+      .filter{
+          display:none;
+        }
 
     }
 
@@ -575,6 +569,65 @@
     #my-form .my-btn:hover {
       background-color: #b33229;
     }
+
+    .filter-options{
+        margin: 0 10px;
+      }
+
+      .filter-heading{
+        font-size:30px;
+        color:black;
+        font-weight:bold;
+        text-transform:uppercase;
+        margin:40px;
+      }
+
+      .checkbox{
+        display:none;
+      }
+
+      .checkbox:checked ~ label{
+        background-color: #cc3227;
+      }
+
+      .filter-options label{
+        font-size:20px;
+        border-radius:10px;
+        font-weight:bold;
+        background-color:#bfbfbf;
+        padding:10px 10px;
+        color:white;
+        cursor:pointer;
+        transition:.2s ease-out;
+      }
+
+      .filter-options label:hover{
+        transform:scale(.95);
+      }
+
+      .post-container form{
+          display:flex;
+          position:relative;
+        }
+      
+      .filter-btn{
+        border:none;
+        background-color:none;
+        padding:10px 10px;
+        background-color:#33adff;
+        border-radius:10px;
+        color:white;
+        font-size:20px;
+        font-weight:bold;
+        text-transform:uppercase;
+        position:absolute;
+        right:50px;
+        transition:.2s ease-out;
+      }
+
+      .filter-btn:hover{
+        transform:scale(.95);
+      }
   </style>
 @yield('header') 
 </head>
@@ -592,7 +645,7 @@
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
-      <li><a href="/ask">ASK</a></li>
+      <li><a href="/ask">Ask</a></li>
       <li>
         <a href="#" class="notification">
           <span>Inbox</span>

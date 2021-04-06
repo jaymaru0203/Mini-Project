@@ -31,4 +31,21 @@ class QuestionController extends Controller
 
         return redirect("/");
     }
+
+    function fetchQuestions(Request $req){
+        $q = Question::all();
+        return view('feed',['question'=>$q]);
+    }
+
+    function filterQuestions(Request $req){
+        $filter_data = $req->filterData;
+        if($filter_data=="all"){
+            $q = Question::all();
+            return view('feed',['question'=>$q]);
+        }else{
+            $q = Question::where('type_of_question',$filter_data)->get();
+            return view('feed',['question'=>$q]);
+        }
+        
+    }
 }

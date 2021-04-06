@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AnswerController;
 
 
 /*
@@ -16,9 +17,17 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('feed');
-});
+// Route::get('/', function () {
+//     return view('feed');
+// });
+
+Route::get("/",[QuestionController::class,'fetchQuestions']);
+
+Route::get("/filter",[QuestionController::class,'filterQuestions']);
+
+Route::get("/postanswer",[AnswerController::class,'repliesForQuestions']);
+
+Route::get("/allanswers/{question_id}",[AnswerController::class,'getAllReplies']);
 
 Route::get('/signup', function () {
     return view('signup');
