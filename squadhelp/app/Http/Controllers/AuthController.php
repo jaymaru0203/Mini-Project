@@ -39,7 +39,7 @@ class AuthController extends Controller
           $p->user_email = $req->user_email;
           $p->save();
           $req->session()->flash('register_status','User has been registered successfully');
-          $req->session()->put('user',$result[0]->user_email);
+          $req->session()->put('user',$req->user_email);
           return redirect('ask');
            }
            else{
