@@ -15,7 +15,7 @@
 .error{
   color: red;
   font-size: 12px;
-  font-weight: 300;"
+  font-weight: 300;
 }
 
 
@@ -248,10 +248,10 @@ button:focus {outline:0 !important;}
                 <div class="selectdiv">  
                   <select name="year" id="year">
                     <option value="0">Select Year of Study</option>
-                    <option value="1st">1st</option>
-                    <option value="2nd">2nd</option>
-                    <option value="3rd">3rd</option>
-                    <option value="4th">4th</option>
+                    <option value="FY">FY</option>
+                    <option value="SY">SY</option>
+                    <option value="TY">TY</option>
+                    <option value="LY">LY</option>
                   </select>
                 </div>
                 <span class="error">@error('year'){{$message}}@enderror</span>
@@ -259,10 +259,11 @@ button:focus {outline:0 !important;}
                 <div class="selectdiv">  
                   <select name="branch" id="branch">
                     <option value="0">Select Your Branch</option>
-                    <option value="Comps">Comps</option>
+                    <option value="COMPS">COMPS</option>
+                    <option value="ETRX">ETRX</option>
+                    <option value="EXTC">EXTC</option>
                     <option value="IT">IT</option>
-                    <option value="Mech">Mech</option>
-                    <option value="Extc">Extc</option>
+                    <option value="MECH">MECH</option>
                   </select>
                 </div> <span class="error">@error('branch'){{$message}}@enderror</span>
           
@@ -273,6 +274,7 @@ button:focus {outline:0 !important;}
 
               <div class="form-group">
                  <input type="password" class="form-control" name="password" placeholder="Your Password">
+                 <span class="text-muted" style="font-size: 10px;">Password must contain atleast 1 Uppercase, 1 Lowercase Letter, 1 Number<br> and 1 Special Character</span>
               </div>
               <span class="error">@error('password'){{$message}}@enderror</span>
 
