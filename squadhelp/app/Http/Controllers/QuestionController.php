@@ -26,7 +26,7 @@ class QuestionController extends Controller
         $q->branch = $branch;
         $q->year = $year;
         $q->type_of_question = $type;
-        $q->user_email = "eshavats@gmail.com";
+        $q->user_email = $req->session()->get("user");
         $q->save();
 
         return redirect("/");
