@@ -37,6 +37,9 @@ Route::get("/chat", [ChatController::class, "rooms"]);
 
 Route::post("/chatForm", [ChatController::class, "message"]);
 
+Route::post("/searchForm", [ChatController::class, "search"]);
+
+
 Route::get('/signup', function () {
     return view('signup');
 });

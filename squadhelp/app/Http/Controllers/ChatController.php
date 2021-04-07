@@ -29,4 +29,10 @@ class ChatController extends Controller
         $id = $req->chatRoomID;
         return redirect('messages/'.$id);
     }
+
+    public function search(Request $req){
+        $search = $req->searchContact;
+        $sql = DB::select("SELECT * FROM Nusers WHERE name LIKE '%$search%'");
+        return view('chat', ['searchUsers'=>$sql]);
+    }
 }

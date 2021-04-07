@@ -1,7 +1,7 @@
 
 @extends('Master.master')
 
-@section('title','Signup')
+@section('title','Messages')
 
 @section('header')
 
@@ -128,8 +128,8 @@
             color: #444;
             padding: 0.5%;
             box-shadow: 0px 1px 3px 0px #888;
-            position: sticky;
-            top: 0;
+            position: fixed !important;
+            z-index: 999999;
         }
 
         #topbar #profilePicture{
@@ -170,6 +170,7 @@
             overflow-x: hidden;
             overflow-y: auto;
             padding-bottom: 5%;
+            padding-top: 5%;
         }
 
         .chatMessage{
@@ -192,6 +193,16 @@
             border-radius: 15px 15px 0px 15px;
             box-shadow: -1px 1px 3px 0px #999;
             align-self: flex-end;
+        }
+        .time1{
+            font-size: 12px;
+            margin: -0.5% 0 0% 1.5%;
+        }
+        .time2{
+            font-size: 12px;
+            margin: -0.5% 1% 0% 1.5%;
+            float: right !important;
+            text-align: right;
         }
         
         @media screen and (max-width: 540px){
@@ -231,7 +242,20 @@
       
       <div id="main">
         <div id="topbar">
-            <!-- <img src="https://via.placeholder.com/150" id="profilePicture"> John Doe -->
+        <?php 
+            $conn = new mysqli('localhost', 'root' , '' , 'laravel');
+            $email = session()->get('user');
+            $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email'";
+            $res = $conn->query($sql);
+            while($r=$res->fetch_assoc()){
+                $em = $r['sender'];
+                $sql2 = "SELECT * FROM Nusers WHERE user_email='$em'";
+                $result = $conn->query($sql2);
+                while($re=$result->fetch_assoc()){ ?>
+                    <img src="https://via.placeholder.com/150" id="profilePicture"> <?php echo $re['name'] ?>
+                <?php }}
+                ?>
+            
             <form action="/chatForm" method="post" id="chatForm">
                 @csrf
                 <input type="text" name="message" id="message" placeholder="Type your Message..">
@@ -244,17 +268,41 @@
                 @foreach($chats as $msg)
                     @if($msg->sender == session()->get('user'))
                         <span class="chatMessage2">{{ $msg->message }}</span>
+                        <span class="time2">{{ $msg->created_at }}</span>
                     @else
                         <span class="chatMessage">{{ $msg->message }}</span>
+                        <span class="time1">{{ $msg->created_at }}</span>
                     @endif
                 @endforeach
             @endif
         </div>
       </div>
+      <hr id="endLine">
 </div>
 
 <script>
-    // Reloading Logic Here
+    setInterval(function(){
+        $(" #chatContainer").load(" #chatContainer");
+    }, 1000);
+
+    // setInterval(function(){
+    //         window.scrollTo(0,document.body.scrollHeight);
+    //         document.getElementById('endLine').scrollIntoView;
+    // }, 100);
+
+    // var cont = document.getElementById("chatContainer");
+    // setInterval(function(){
+    //     var shouldScroll = cont.scrollTop + cont.clientHeight === cont.scrollHeight;
+    //     if(shouldScroll){
+    //         window.scrollTo(0,document.body.scrollHeight);
+    //         document.getElementById('endLine').scrollIntoView;
+    //     }
+    // }, 10000);
+
+    // document.getElementById("chatContainer").onload = (function(){
+    //     window.scrollTo(0,document.body.scrollHeight);
+    //     document.getElementById('endLine').scrollIntoView;
+    // });
 </script>
 
 @endsection
