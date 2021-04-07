@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\ChatController;
 
 
 /*
@@ -28,6 +29,13 @@ Route::get("/filter",[QuestionController::class,'filterQuestions']);
 Route::get("/postanswer",[AnswerController::class,'repliesForQuestions']);
 
 Route::get("/allanswers/{question_id}",[AnswerController::class,'getAllReplies']);
+
+
+Route::get("/messages/{id}", [ChatController::class, "chat"]);
+
+Route::get("/chat", [ChatController::class, "rooms"]);
+
+Route::post("/chatForm", [ChatController::class, "message"]);
 
 Route::get('/signup', function () {
     return view('signup');
