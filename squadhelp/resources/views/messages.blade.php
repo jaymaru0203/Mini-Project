@@ -245,15 +245,19 @@
         <?php 
             $conn = new mysqli('localhost', 'root' , '' , 'laravel');
             $email = session()->get('user');
-            $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email'";
+            $id1 = session('chatRoomID');
+
+            $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email' AND chatRoomID='$id1'";
             $res = $conn->query($sql);
+// NAME RETREIVAL CODE NOT WORKING
+            if($res->num_rows > 0){
             while($r=$res->fetch_assoc()){
                 $em = $r['sender'];
                 $sql2 = "SELECT * FROM Nusers WHERE user_email='$em'";
                 $result = $conn->query($sql2);
                 while($re=$result->fetch_assoc()){ ?>
                     <img src="https://via.placeholder.com/150" id="profilePicture"> <?php echo $re['name'] ?>
-                <?php }}
+                <?php }}}
                 ?>
             
             <form action="/chatForm" method="post" id="chatForm">

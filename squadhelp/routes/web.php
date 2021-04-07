@@ -33,6 +33,8 @@ Route::get("/allanswers/{question_id}",[AnswerController::class,'getAllReplies']
 
 Route::get("/messages/{id}", [ChatController::class, "chat"]);
 
+Route::get("/chatRoom/{id}", [ChatController::class, "createRoom"]);
+
 Route::get("/chat", [ChatController::class, "rooms"]);
 
 Route::post("/chatForm", [ChatController::class, "message"]);
