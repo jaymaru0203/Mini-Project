@@ -261,7 +261,7 @@
                     while($r=$res->fetch_assoc()){
                         ?>
                     
-                    <a href="messages/{{ $row->id }}"><img src="https://via.placeholder.com/150" id="profilePicture"><?php echo $r['name']; ?> <p id="chatDate"></p> </a><hr>
+                    <a href="messages/{{ $row->id }}"><img src="{{asset('storage/uploads')}}/<?php echo $r['image']; ?>" id="profilePicture"><?php echo $r['name']; ?> <p id="chatDate"></p> </a><hr>
 
                 <?php  }
                 ?>

@@ -19,17 +19,17 @@ class ProfileController extends Controller
     {
 
         $req->validate([
-            'name' => 'required|min:3|string',
+            'name' => 'min:3|string',
 
-            'year' => 'required|not_in:0',
+            'year' => 'not_in:0',
 
-            'branch' => 'required|not_in:0',
+            'branch' => 'not_in:0',
 
-            'user_email' => 'required|email',
+            'user_email' => 'email',
 
-            'old_password' => 'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'old_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
 
-            'new_password' => 'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'new_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
 
         ], [
             'password.regex'  => 'The :attribute must contain at least one uppercase or lowercase letter, number and special character.',
@@ -37,6 +37,16 @@ class ProfileController extends Controller
 
         $email = $req->session()->get("user");
         $user = Nuser::where('user_email', $email)->first();
+        $id = $user->id;
+
+        // $file = $req->file('image');
+        // $ext = $file->getClientOriginalExtension();
+        // $file->move(public_path().'/uploads/',$user->id.'.'.$ext);
+
+        $fileName = $id . '.' . $req->file('image')->extension();        
+        $req->file('image')->storeAs('public/uploads', $fileName);
+
+        
 
         if (Hash::check($req->old_password, $user->password)) {
 
@@ -45,10 +55,10 @@ class ProfileController extends Controller
             $user->branch = $req->branch;
             $user->year = $req->year;
             $user->password = Hash::make($req->new_password);
-
+            $user->image = $fileName;
             $user->save();
-
             $req->session()->put('user', $req->user_email);
+            $req->session()->put('user_img', $fileName);
             $req->session()->flash('message', 'Profile Updated Successfully!');
 
         } else {

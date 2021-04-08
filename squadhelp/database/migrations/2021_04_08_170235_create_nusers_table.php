@@ -21,6 +21,7 @@ class CreateNusersTable extends Migration
             $table->string('branch');
             $table->string('user_email');
             $table->string('password');
+            $table->string('image');
             $table->timestamps();
         });
     }

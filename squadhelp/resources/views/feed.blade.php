@@ -118,24 +118,27 @@
     
       <div class="userdetails-container">
         <div class="user-image">
-        
-        {{-- if else logic i have made changes in controller just send the file name and change the below  
-        if statement
 
-        @if()
 
-        @else
+         <?php 
+            $conn = new mysqli('localhost', 'root' , '' , 'laravel');
+            $email = session()->get('user');
+            $qemail = $q->user_email;
 
-        <img src="{{URL::asset('/images/user_icon.png')}}" alt="">
+            // $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email' AND chatRoomID='$id1'";
+            $sql = "SELECT * FROM nusers WHERE user_email='$qemail'";
+            $res = $conn->query($sql);
+            if($res->num_rows > 0){
+            while($r=$res->fetch_assoc()){ ?>
 
-        @endif --}}
+           <img src="{{asset('storage/uploads')}}/<?php echo $r['image']; ?>" alt="">
 
-          <img src="{{URL::asset('/images/user_icon.png')}}" alt="">
-
-        </div>
+         
+          </div>
 
         <div class="user-details">
-          <h1>Esha Vats</h1>
+          <h1><?php echo $r['name']; ?></h1>
+            <?php }} ?>
           <h2>Question For : {{ $q->year }} | {{ $q->branch }}</h2>
         </div>
 

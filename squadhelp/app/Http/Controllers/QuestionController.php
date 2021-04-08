@@ -38,12 +38,12 @@ class QuestionController extends Controller
         $user_email = $req->session()->get("user");
         
         $user_details = Nuser::where("user_email",$user_email)->first();
-        // $user_details_year = $user_details->year;
-        // $user_details_branch = $user_details->branch;
 
-        // $user_details_img = $user_details->image;
-        
         $q = Question::all();
+
+        // $qemail = $q1->user_email;
+
+        // $img = Nuser::where("user_email",$qemail)->first();
         
         return view('feed',['question'=>$q,"user_details"=>$user_details]);
     }

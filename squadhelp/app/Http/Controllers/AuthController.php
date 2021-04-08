@@ -40,6 +40,7 @@ class AuthController extends Controller
           $p->save();
           $req->session()->flash('register_status','User has been registered successfully');
           $req->session()->put('user',$req->user_email);
+          $req->session()->put('user_img',"null.jpg");
           return redirect('ask');
            }
            else{
@@ -76,6 +77,7 @@ class AuthController extends Controller
 	     		if(Hash::check($req->password, $result[0]->password)){
 	     		echo "You are logged in Successfully";
 				$req->session()->put('user',$result[0]->user_email);
+				$req->session()->put('user_img',$result[0]->image);
 				return redirect('/');
 	     	}
 	     	else{
@@ -84,6 +86,17 @@ class AuthController extends Controller
 			return redirect('login');
 	        }
 	       }
+	      }
+
+	      function logout(Request $req){
+             if(session()->has('user')){
+             	$req->session()->flush();
+             	return redirect('login');
+             }
+             else{
+             	return redirect('signup');
+             }
+
 	      }
 
 }

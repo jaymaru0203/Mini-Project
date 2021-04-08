@@ -70,11 +70,12 @@
 <div id="prof-container" class="m-5 px-5 pb-0">
     <div class="row">
         <div class="col-2">
-            <img src="http://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture-1024x1024.jpg" width="150" height="150" class="rounded-circle" />
+            
+            <img src="{{asset('storage/uploads/'.session()->get('user_img'))}}" width="150" height="150" class="rounded-circle" />
         </div>
         <div class="col-6">
-            <h3 class="mt-4 name">{{$user->name}}</h3>
-            <h4 class="username">{{$user->status}}</h4>
+            <h3 class="mt-4 name">{{ $user->name }}</h3>
+            <h4 class="username">{{ $user->status }}</h4>
             @if(session()->has("message"))
             <h4 class="username">{{session()->get("message")}}</h4>
             @endif
@@ -97,7 +98,7 @@
             <a class="nav-link prof-nav-link" href="#">Your Answers</a>
         </li>
     </ul>
-    <form class="edit-form mt-4" method="post" action="editprofile">
+    <form class="edit-form mt-4" method="post" action="editprofile" enctype="multipart/form-data">
         @csrf
 
         <div class="form-row">
@@ -106,7 +107,7 @@
                 <?php
                 $name = $user->name;
                 ?>
-                <input type="text" name="name" class="form-control" value={{$name}}" />
+                <input type="text" name="name" class="form-control" value={{$name}} />
                 <span class="error">@error('name'){{$message}}@enderror</span>
             </div>
             <div class="col pl-4">

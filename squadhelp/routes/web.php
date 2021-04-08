@@ -50,12 +50,22 @@ Route::get("downvote/{answer_id}",[AnswerController::class,'downVote']);
 
 
 Route::get('/signup', function () {
-    return view('signup');
+	if(session()->has('user')){
+		return redirect('/');
+
+	}else{
+    return view('signup');}
 });
 
 Route::get('/login', function () {
-    return view('login');
+	if(session()->has('user')){
+		return redirect('/');
+
+	}else{
+    return view('login');}
 });
+
+Route::get("/logout",[AuthController::class,'logout']);
 
 Route::post('loginuser',[Authcontroller::class,'loginuser']);
 

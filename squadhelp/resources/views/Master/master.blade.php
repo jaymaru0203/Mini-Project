@@ -111,14 +111,18 @@
       background: #e63600;
     }
 
-    #profilePicture{
+    .profilePicture{
             border: none;
             border-radius: 50%;
-            width: 12%;
+            width: 35px;
             margin: 0;
             background-color: pink;
             vertical-align: middle;
         }
+
+    .profile-a{
+      padding: 0 20px;
+    }
 
     nav .menu-icon,
     nav .cancel-icon,
@@ -620,12 +624,15 @@
       <li>
         <a href="/chat" class="notification">
           <span>Inbox</span>
-          <span class="badge">3</span>
+          <!-- <span class="badge">3</span> -->
         </a>
       </li>
+      @if(Session::has('user'))  
+      <li><a href="/logout">Log Out</a></li>
+      @else
       <li><a href="/login">Login</a></li>
       <li><a href="/signup">Signup</a></li>
-      <li><a href="/logout">Log Out</a></li>
+      @endif
 
     </div>
     <div class="search-icon">
@@ -639,7 +646,8 @@
       <button type="submit" class="fas fa-search"></button>
       
     </form>
-    <a href="/profile"><img src="images" id="#profilePicture"></a>
+    
+    <a class="profile-a" href="/profile"><img src="{{asset('storage/uploads/'.session()->get('user_img'))}}" class="rounded-circle profilePicture" ></a>
   </nav>
 
   <!-- contents -->

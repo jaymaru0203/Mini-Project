@@ -259,7 +259,7 @@
                 $sql2 = "SELECT * FROM Nusers WHERE user_email='$em'";
                 $result = $conn->query($sql2);
                 while($re=$result->fetch_assoc()){ ?>
-                    <img src="https://via.placeholder.com/150" id="profilePicture"> <h2><?php echo $re['name'] ?></h2>
+                    <img src="{{asset('storage/uploads')}}/<?php echo $re['image']; ?>" id="profilePicture"> <h2><?php echo $re['name'] ?></h2>
                 <?php }}}
                 ?>
             
