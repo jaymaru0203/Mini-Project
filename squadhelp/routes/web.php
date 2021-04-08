@@ -35,9 +35,19 @@ Route::get("/allanswers/{question_id}",[AnswerController::class,'getAllReplies']
 
 Route::get("/messages/{id}", [ChatController::class, "chat"]);
 
+Route::get("/chatRoom/{id}", [ChatController::class, "createRoom"]);
+
 Route::get("/chat", [ChatController::class, "rooms"]);
 
 Route::post("/chatForm", [ChatController::class, "message"]);
+
+Route::post("/searchForm", [ChatController::class, "search"]);
+
+
+Route::get("upvote/{answer_id}",[AnswerController::class,'upVote']);
+
+Route::get("downvote/{answer_id}",[AnswerController::class,'downVote']);
+
 
 Route::get('/signup', function () {
     return view('signup');

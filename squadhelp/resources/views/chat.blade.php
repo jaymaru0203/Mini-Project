@@ -1,7 +1,7 @@
 
 @extends('Master.master')
 
-@section('title','Signup')
+@section('title','Chats')
 
 @section('header')
 
@@ -238,7 +238,7 @@
 @section('content')
 <div class="outer">
 <div id="mySidebar" class="sidebar">
-        <form id="searchForm" action="chatForm" method="POST">
+        <form id="searchForm" action="searchForm" method="POST">
             @csrf
             <input type="text" name="searchContact" id="searchContact" placeholder="Search Contact">
             <button type="submit" id="searchButton">
@@ -265,6 +265,16 @@
 
                 <?php  }
                 ?>
+                <!-- <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jay Maru <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr> -->
+
+            @endforeach
+        @endif
+
+        @if(isset($searchUsers))
+            @foreach($searchUsers as $user)
+                    
+                    <a href="chatRoom/{{$user->id}}"><img src="https://via.placeholder.com/150" id="profilePicture">{{ $user->name }}<p id="chatDate"></p> </a><hr>
+
                 <!-- <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jay Maru <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr> -->
 
             @endforeach
