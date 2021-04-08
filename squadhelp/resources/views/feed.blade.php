@@ -68,14 +68,27 @@
           </div>
         </form>
       </div>
-
+      
       <!-- posted questions -->
       @foreach($question as $q)
       <div class="post-container posted">
-
+    
       <div class="userdetails-container">
         <div class="user-image">
-          <img src="https://cdn.peoople.app/image/profile/truster/1879448_22022020051811322524_opt.jpg" alt="">
+        
+        {{-- if else logic i have made changes in controller just send the file name and change the below  
+        if statement
+
+        @if()
+
+        @else
+
+        <img src="{{URL::asset('/images/user_icon.png')}}" alt="">
+
+        @endif --}}
+
+          <img src="{{URL::asset('/images/user_icon.png')}}" alt="">
+
         </div>
 
         <div class="user-details">
@@ -106,7 +119,7 @@
 
 
       <div class="question-container">
-
+        @if($user_details_year == $q->year)
         <form action="postanswer" method="GET">
           <input type="hidden" name="question_id" value="{{$q->question_id}}">
           
@@ -121,7 +134,21 @@
           </div>
           
         </form>
+        @else
+        <form >
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">
+                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon"></i></a>
+              </button>
+            </div>
+            <input type="text" class="form-control" name="answer" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2" readonly>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
+          </div>
+          
+        </form>
         
+        @endif
       </div>
       </div>
 

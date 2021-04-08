@@ -42,6 +42,11 @@ Route::post("/chatForm", [ChatController::class, "message"]);
 Route::post("/searchForm", [ChatController::class, "search"]);
 
 
+Route::get("upvote/{answer_id}",[AnswerController::class,'upVote']);
+
+Route::get("downvote/{answer_id}",[AnswerController::class,'downVote']);
+
+
 Route::get('/signup', function () {
     return view('signup');
 });

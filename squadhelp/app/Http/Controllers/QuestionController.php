@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Nuser;
 
 class QuestionController extends Controller
 {
@@ -26,15 +27,23 @@ class QuestionController extends Controller
         $q->branch = $branch;
         $q->year = $year;
         $q->type_of_question = $type;
-        $q->user_email = $req->session()->get("user");
+        $q->user_email = "eshavats@gmail.com";
         $q->save();
 
         return redirect("/");
     }
 
     function fetchQuestions(Request $req){
+        $user_email = $req->session()->get("user");
+        
+        $user_details = Nuser::where("user_email",$user_email)->first();
+        $user_details_year = $user_details->year;
+
+        $user_details_img = $user_details->image;
+        
         $q = Question::all();
-        return view('feed',['question'=>$q]);
+        
+        return view('feed',['question'=>$q,"user_details_year"=>$user_details_year]);
     }
 
     function filterQuestions(Request $req){
