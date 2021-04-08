@@ -60,6 +60,14 @@
             <label for="hackathons">Hackathons</label>
           </div>
           <div class="filter-options">
+            <input type="radio" name="filterData" id="internships" class="checkbox" value="Internships">
+            <label for="internships">Internships</label>
+          </div>
+          <div class="filter-options">
+            <input type="radio" name="filterData" id="others" class="checkbox" value="Others">
+            <label for="others">Others</label>
+          </div>
+          <div class="filter-options">
             <input type="radio" name="filterData" id="all" class="checkbox" value="all">
             <label for="all">All</label>
           </div>
@@ -104,12 +112,6 @@
 
       <!-- question -->
       <div class="row question-info">
-
-        <div class="col-1 votes">
-          <i class="fas fa-arrow-up"></i>
-          <h4>20</h4>
-          <i class="fas fa-arrow-down"></i>
-        </div>
         
         <div class="col-11 question">
           <p>{{ $q->question_content }}</p>
@@ -119,7 +121,7 @@
 
 
       <div class="question-container">
-        @if($user_details_year == $q->year)
+        @if($user_details->year == $q->year && $user_details->branch == $q->branch)
         <form action="postanswer" method="GET">
           <input type="hidden" name="question_id" value="{{$q->question_id}}">
           
@@ -142,8 +144,8 @@
                 <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon"></i></a>
               </button>
             </div>
-            <input type="text" class="form-control" name="answer" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2" readonly>
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
+            <input type="text" class="form-control" name="answer" placeholder="You aren't eligible to answer this question..." aria-label="Write an Answer.." aria-describedby="button-addon2" disabled>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
           </div>
           
         </form>

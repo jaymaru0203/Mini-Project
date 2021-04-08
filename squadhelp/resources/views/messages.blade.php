@@ -247,16 +247,19 @@
             $email = session()->get('user');
             $id1 = session('chatRoomID');
 
-            $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email' AND chatRoomID='$id1'";
+            // $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email' AND chatRoomID='$id1'";
+            $sql = "SELECT * FROM chat_rooms WHERE id='$id1' AND (email1='$email' OR email2='$email')";
             $res = $conn->query($sql);
-// NAME RETREIVAL CODE NOT WORKING
             if($res->num_rows > 0){
             while($r=$res->fetch_assoc()){
-                $em = $r['sender'];
+                $em = $r['email1'];
+                if($email == $em){
+                    $em=$r['email2'];
+                }
                 $sql2 = "SELECT * FROM Nusers WHERE user_email='$em'";
                 $result = $conn->query($sql2);
                 while($re=$result->fetch_assoc()){ ?>
-                    <img src="https://via.placeholder.com/150" id="profilePicture"> <?php echo $re['name'] ?>
+                    <img src="https://via.placeholder.com/150" id="profilePicture"> <h2><?php echo $re['name'] ?></h2>
                 <?php }}}
                 ?>
             

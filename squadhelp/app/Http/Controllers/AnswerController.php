@@ -12,11 +12,11 @@ class AnswerController extends Controller
     function repliesForQuestions(Request $req){
         $question_id = $req->question_id;
         $answer = $req->answer;
-
+        $email = $req->session()->get('user');
         $a = new Answer;
         $a->question_id = $question_id;
         $a->answer = $answer;
-        $a->answer_by = "eshavats@gmail.com";
+        $a->answer_by = $email;
         $a->upvote_count = 0;
         $a->downvote_count = 0;
         $a->save();

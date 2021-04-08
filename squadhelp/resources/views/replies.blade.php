@@ -49,9 +49,8 @@
       <div class="row question-info">
         
         <div class="col-1 votes">
-          <a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a>
-          <h4>{{$a->upvote_count}}</h4>
-          <a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a>
+          <h4><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</h4>
+          <h4><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</h4>
         </div>
         
         <div class="col-11 question">
