@@ -12,9 +12,9 @@ class QuestionController extends Controller
     {
         $req->validate([
             "question" => "required|min:20|max:255",
-            "year" => "required",
-            "branch" => "required",
-            "type" => "required"
+            "year" => "required|not_in:0",
+            "branch" => "required|not_in:0",
+            "type" => "required|not_in:0"
         ]);
 
         $ques = $req->question;
@@ -41,7 +41,7 @@ class QuestionController extends Controller
         // $user_details_year = $user_details->year;
         // $user_details_branch = $user_details->branch;
 
-        $user_details_img = $user_details->image;
+        // $user_details_img = $user_details->image;
         
         $q = Question::all();
         

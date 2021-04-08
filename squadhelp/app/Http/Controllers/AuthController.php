@@ -76,7 +76,7 @@ class AuthController extends Controller
 	     		if(Hash::check($req->password, $result[0]->password)){
 	     		echo "You are logged in Successfully";
 				$req->session()->put('user',$result[0]->user_email);
-				return redirect('ask');
+				return redirect('/');
 	     	}
 	     	else{
 			$req->session()->flash('error','Password Incorrect!!!');

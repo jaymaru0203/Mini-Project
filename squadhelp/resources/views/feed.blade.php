@@ -2,6 +2,41 @@
 
 @section('title','Feed')
 
+@section('header')
+
+<style type="text/css">
+  h2.typeQ{
+    position: absolute;
+    font-size: 14px; 
+    padding: 5px 10px;
+    top: -40px;
+    right: -15px;
+    background-color: #ff2316;
+    color: white;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 650px) {
+  h2.typeQ{
+    position: absolute;
+    font-size: 14px; 
+    padding: 5px 10px;
+    top: -50px;
+    right: -20px;
+    background-color: #ff2316;
+    color: white;
+    border-radius: 5px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+</style>
+@endsection
+
 @section('content')
 <!-- <div class="left-container">
 
@@ -40,9 +75,9 @@
     <div class="right-container">
       
       <!-- ask question container -->
-      <div class="post-container filter">
+      <div class="post-container filter" >
         <h1 class="filter-heading">Filter Results</h1>
-        <form action="filter" method="GET">
+        <form action="filter" method="GET" class="flex-container">
           <div class="filter-options">
             <input type="radio" name="filterData" id="placements" class="checkbox" value="Placements">
             <label for="placements">Placements</label>
@@ -101,10 +136,11 @@
 
         <div class="user-details">
           <h1>Esha Vats</h1>
-          <h2>{{ $q->user_email }}</h2>
+          <h2>Question For : {{ $q->year }} | {{ $q->branch }}</h2>
         </div>
 
         <div class="post-date">
+          <h2 class="typeQ">{{ $q->type_of_question }}</h2>
           <p>{{ $q->created_at }}</p>
         </div>
           
@@ -128,11 +164,11 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <button class="btn btn-outline-secondary" type="button">
-                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon"></i></a>
+                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon" style="vertical-align: middle;"></i></a>
               </button>
             </div>
             <input type="text" class="form-control" name="answer" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px;vertical-align: middle;"></i></button>
           </div>
           
         </form>
@@ -141,11 +177,11 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <button class="btn btn-outline-secondary" type="button">
-                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon"></i></a>
+                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon" style="vertical-align: middle;"></i></a>
               </button>
             </div>
             <input type="text" class="form-control" name="answer" placeholder="You aren't eligible to answer this question..." aria-label="Write an Answer.." aria-describedby="button-addon2" disabled>
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled><i class="fa fa-location-arrow" style="font-size:20px"></i></button>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled><i class="fa fa-location-arrow" style="font-size:20px;vertical-align: middle;"></i></button>
           </div>
           
         </form>

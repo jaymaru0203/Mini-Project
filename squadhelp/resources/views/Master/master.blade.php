@@ -43,7 +43,7 @@
       align-items: center;
       justify-content: space-between;
       height: 70px;
-      padding: 0 100px;
+      padding: 0 15px;
       z-index: 5;
     }
 
@@ -73,7 +73,7 @@
     }
 
     nav .nav-items li a:hover {
-      color: #ff3d00;
+      color: #e5564d;
     }
 
     nav form {
@@ -101,7 +101,7 @@
       padding: 0 15px;
       color: #fff;
       font-size: 17px;
-      background: #ff3d00;
+      background:#e5564d;
       border: none;
       border-radius: 2px;
       cursor: pointer;
@@ -110,6 +110,15 @@
     nav form button:hover {
       background: #e63600;
     }
+
+    #profilePicture{
+            border: none;
+            border-radius: 50%;
+            width: 12%;
+            margin: 0;
+            background-color: pink;
+            vertical-align: middle;
+        }
 
     nav .menu-icon,
     nav .cancel-icon,
@@ -150,7 +159,7 @@
 
     @media (max-width: 1245px) {
       nav {
-        padding: 0 50px;
+        padding: 0 10px;
       }
 
       .notification .badge {
@@ -478,9 +487,24 @@
 
 
     @media screen and (max-width: 650px) {
-      .left-container {
-        display: none;
-      }
+
+      .filter-options label {
+    font-size: 11px;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: #bfbfbf;
+    padding: 8px 10px;
+    color: white;
+    cursor: pointer;
+    transition: .2s ease-out;
+    }
+
+    .post-container {
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+    width: 90%;
+    padding: 1rem 1rem;
+    }
 
       .post-date {
         font-size: .8rem;
@@ -488,10 +512,12 @@
 
       .post-container h1 {
         font-size: 1.2rem;
+        margin: 10px 5px;
       }
 
       .post-container h2 {
         font-size: .6rem;
+        margin: 10px 5px;
       }
 
       .right-container {
@@ -504,8 +530,7 @@
       }
 
       .post-container {
-        width: 90%;
-      }
+        width: 90%;      }
 
       .question p {
         font-size: .8rem;
@@ -514,10 +539,6 @@
       .votes h4 {
         font-size: 12px;
       }
-
-      .filter{
-          display:none;
-        }
 
     }
 
@@ -590,16 +611,16 @@
         background-color: #cc3227;
       }
 
-      .filter-options label{
-        font-size:20px;
-        border-radius:10px;
-        font-weight:bold;
-        background-color:#bfbfbf;
-        padding:10px 10px;
-        color:white;
-        cursor:pointer;
-        transition:.2s ease-out;
-      }
+    .filter-options label {
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    background-color: #bfbfbf;
+    padding: 10px 10px;
+    color: white;
+    cursor: pointer;
+    transition: .2s ease-out;
+}
 
       .filter-options label:hover{
         transform:scale(.95);
@@ -612,16 +633,15 @@
       
       .filter-btn{
         border:none;
+        outline: none;
         background-color:none;
         padding:10px 10px;
         background-color:#33adff;
         border-radius:10px;
         color:white;
-        font-size:20px;
-        font-weight:bold;
+        font-size:15px;
+        font-weight:600;
         text-transform:uppercase;
-        position:absolute;
-        right:50px;
         transition:.2s ease-out;
       }
 
@@ -642,16 +662,20 @@
     </div>
     <div class="logo">LOGO</div>
     <div class="nav-items">
-      <li><a href="#">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="/ask">Ask</a></li>
       <li>
-        <a href="#" class="notification">
+        <a href="/chat" class="notification">
           <span>Inbox</span>
           <span class="badge">3</span>
         </a>
       </li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Signup</a></li>
+      <li><a href="/logout">Log Out</a></li>
+
     </div>
     <div class="search-icon">
       <span class="fas fa-search"></span>
@@ -662,7 +686,9 @@
     <form action="#">
       <input type="search" class="search-data" placeholder="Search" required>
       <button type="submit" class="fas fa-search"></button>
+      
     </form>
+    <a href="/profile"><img src="images" id="#profilePicture"></a>
   </nav>
 
   <!-- contents -->
