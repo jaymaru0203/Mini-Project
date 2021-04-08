@@ -5,6 +5,8 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ProfileController;
+
 
 
 /*
@@ -59,10 +61,13 @@ Route::post('loginuser',[Authcontroller::class,'loginuser']);
 
 Route::post('signupuser',[Authcontroller::class,'signupuser']);
 
-
 Route::get('/ask', function () {
     return view('ask');
 });
+
+Route::get('/profile', [ProfileController::class, "fetchUser"]);
+Route::post('editprofile', [ProfileController::class, "editprofile"]);
+
 Route::post('question', [QuestionController::class, "postQuestion"]);
 
 

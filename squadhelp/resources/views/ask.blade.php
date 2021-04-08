@@ -2,6 +2,160 @@
 
 @section('title','Ask a Question')
 
+@section('header')
+<style type="text/css">
+  /* Ask a question */
+  .heading {
+    text-align: center;
+    padding: 3rem 4rem 0;
+  }
+
+  #my-form.form-container {
+    padding: 1.7rem 27rem 0;
+  }
+
+  #my-form .col-6 {
+    padding: 0 !important;
+  }
+
+  #my-form .form-select {
+    /* padding: 0 5rem; */
+    width: 100%;
+  }
+
+  #my-form select {
+    border: none;
+  }
+
+  #my-form .col,
+  #my-form .col-6 {
+    border: 1px solid rgb(207, 207, 207);
+  }
+
+  #my-form .col {
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  #my-form .my-border {
+    border: 1px solid rgb(207, 207, 207);
+
+  }
+
+  #my-form .my-btn {
+    background-color: #e5564d;
+    color: white;
+    font-weight: 700;
+  }
+
+  #my-form .my-btn:hover {
+    background-color: #b33229;
+  }
+
+  /* Responsive Styling */
+  @media only screen and (max-width: 1450px) {
+    #my-form.form-container {
+      padding: 1.7rem 20rem 0;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    #my-form.form-container {
+      padding: 1.7rem 15rem 0;
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    #my-form.form-container {
+      padding: 1.7rem 12rem 0;
+    }
+  }
+
+  @media only screen and (max-width: 754px) {
+    #my-form.form-container {
+      padding: 1.7rem 8rem 0;
+    }
+  }
+
+  @media only screen and (max-width: 630px) {
+    #my-form.form-container {
+      padding: 1.7rem 5rem 0;
+    }
+  }
+
+  @media only screen and (max-width: 530px) {
+    #my-form.form-container {
+      padding: 1.7rem 2rem 0;
+    }
+    #my-form .my-btn {
+      font-size: 1.2em !important;
+    }
+    .heading h1 {
+      font-size: 1.8em !important;
+    }
+    .heading {
+      padding-top: 1.3rem;
+    }
+  }
+
+  @media only screen and (max-width: 431px) {
+    #my-form.form-container {
+      padding: 1.5rem 2rem 0;
+    }
+    #my-form .my-btn {
+      font-size: 1em !important;
+    }
+    #my-form .my-btn-div {
+      padding: 10px 15px !important;
+    }
+    #my-form option {
+      font-size: 10px !important;
+    }
+    #my-form select.form-select {
+      font-size: 15px;
+    }
+    .heading h1 {
+      font-size: 1.7em !important;
+    }
+    .heading {
+      padding-top: 1.7rem;
+    }
+  }
+
+  @media only screen and (max-width: 340px) {
+    .heading h1 {
+      font-size: 1.5em !important;
+    }
+    .heading {
+      padding-top: 1em;
+    }
+
+    #my-form.form-container {
+      padding-top: 1em;
+    }
+    #my-form .my-btn-div {
+      padding: 10px 0 15px !important;
+    }
+    #my-form .my-btn {
+      font-size: 15px !important;
+    }
+    #my-form select.form-select {
+      font-size: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 302px) {
+    .heading {
+      padding: 1em 0 0 !important;
+    }
+    #my-form .my-btn-div {
+      margin: 0 10px !important;
+    }
+  }
+</style>
+@endsection
+
 @section('content')
 <!-- Form -->
 <div class="mt-5 pt-5">
@@ -61,7 +215,7 @@
 
       </div>
     </div>
-    <div class="px-5 pt-3 mx-5">
+    <div class="px-5 pt-3 mx-5 my-btn-div">
       <button type="submit" class="btn my-btn btn-lg btn-block">
         Add Question
       </button>
