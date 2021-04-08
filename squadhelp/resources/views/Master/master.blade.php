@@ -521,55 +521,6 @@
 
     }
 
-    /* Ask a question */
-    .heading {
-      text-align: center;
-      padding: 3rem 4rem 0;
-    }
-
-    #my-form.form-container {
-      padding: 1.7rem 27rem 0;
-    }
-
-    #my-form .col-6 {
-      padding: 0 !important;
-    }
-
-    #my-form .form-select {
-      /* padding: 0 5rem; */
-      width: 100%;
-    }
-
-    #my-form select {
-      border: none;
-    }
-
-    #my-form .col,
-    #my-form .col-6 {
-      border: 1px solid rgb(207, 207, 207);
-    }
-
-    #my-form .col {
-      border-left: none;
-      border-top: none;
-      border-bottom: none;
-    }
-
-    #my-form .my-border {
-      border: 1px solid rgb(207, 207, 207);
-
-    }
-
-    #my-form .my-btn {
-      background-color: #e5564d;
-      color: white;
-      font-weight: 700;
-    }
-
-    #my-form .my-btn:hover {
-      background-color: #b33229;
-    }
-
     .filter-options{
         margin: 0 10px;
       }
