@@ -2,6 +2,38 @@
 
 @section('title','Answers')
 
+@section('header')
+<style type="text/css">
+ .report{
+    float: right;
+    border: none;
+    background-color: #e63600;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 4px 8px;
+    margin: 4px 5px 0 0;
+        }
+
+  .report a{
+    color: unset;
+    text-decoration:unset;
+  }
+
+  .votes{
+    float: left;
+    display: inline;
+  }
+
+  .question p{
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+</style>
+@endsection
+
 @section('content')
 
 <div class="right-container">
@@ -36,7 +68,7 @@
 
       <div class="userdetails-container">
       <div class="user-details">
-          <h2 style="font-size:15px;margin-left:25px">User: {{ $a->answer_by }}</h2>
+          <h2 style="font-size:15px;font-weight: 700;margin-left:25px">User: {{ $a->answer_by }}</h2>
         </div>
 
         <div class="post-date">
@@ -48,16 +80,16 @@
       <!-- question -->
       <div class="row question-info">
         
-        <div class="col-1 votes">
-          <h4><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</h4>
-          <h4><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</h4>
-        </div>
-        
-        <div class="col-11 question">
+        <div class="col-12 question">
           <p style="text-transform:uppercase;">{{$a->answer}}</p>
         </div>
 
       </div>
+      <div class="votes">
+        <div style="float: left;padding-right:10px;font-size: 20px; "><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</div>
+          <div style="float: left;padding-right:10px;font-size: 20px;"><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</div>
+        </div>
+        <button class="report"><a href="/report/">Report</a></button>
       </div>
 
 @endforeach

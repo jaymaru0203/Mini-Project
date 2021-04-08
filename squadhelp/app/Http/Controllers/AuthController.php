@@ -41,7 +41,7 @@ class AuthController extends Controller
           $req->session()->flash('register_status','User has been registered successfully');
           $req->session()->put('user',$req->user_email);
           $req->session()->put('user_img',"null.jpg");
-          return redirect('ask');
+          return redirect('/');
            }
            else{
            	$req->session()->flash('register_status','This Email already exists.');

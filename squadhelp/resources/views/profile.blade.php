@@ -102,22 +102,22 @@
         @csrf
 
         <div class="form-row">
-            <div class="col pr-5">
+            <div class="col-md-6 pr-5">
                 <label for="" class="form-label">Name</label>
-                <?php
+            <!--     <?php
                 $name = $user->name;
-                ?>
-                <input type="text" name="name" class="form-control" value={{$name}} />
+                ?> -->
+                <input type="text" name="name" class="form-control" value="{{$user->name}}" />
                 <span class="error">@error('name'){{$message}}@enderror</span>
             </div>
-            <div class="col pl-4">
+            <div class="col-md-6 pl-4">
                 <label for="" class="form-label">Email</label>
                 <input type="email" name="user_email" class="form-control" value={{$user->user_email}} />
                 <span class="error">@error('user_email'){{$message}}@enderror</span>
             </div>
         </div>
         <div class="form-row mt-4">
-            <div class="col pr-5">
+            <div class="col-md-6 pr-5">
                 <label for="" class="form-label">Branch</label>
                 <br />
                 <select name="branch" id="inputState" class="form-select form-control py-2">
@@ -130,7 +130,7 @@
                 </select>
                 <span class="error">@error('branch'){{$message}}@enderror</span>
             </div>
-            <div class="col pl-4">
+            <div class="col-md-6 pl-4">
                 <label for="" class="form-label">Year</label>
                 <br />
                 <select name="year" id="inputState" class="form-select form-control py-2">
@@ -144,12 +144,12 @@
             </div>
         </div>
         <div class="form-row mt-4">
-            <div class="col pr-5">
+            <div class="col-md-6 pr-5">
                 <label for="" class="form-label">Old Password</label>
                 <input name="old_password" type="password" class="form-control" placeholder="*********" />
                 <span class="error">@error('old_password'){{$message}}@enderror</span>
             </div>
-            <div class="col pl-4">
+            <div class="col-md-6 pl-4">
                 <label for="" class="form-label">New Password</label>
                 <input name="new_password" type="password" class="form-control" placeholder="*********" />
                 <span class="error">@error('new_password'){{$message}}@enderror</span>

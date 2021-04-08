@@ -24,29 +24,29 @@ use App\Http\Controllers\ProfileController;
 //     return view('feed');
 // });
 
-Route::get("/",[QuestionController::class,'fetchQuestions']);
+Route::get("/",[QuestionController::class,'fetchQuestions'])->middleware('usersession');
 
-Route::get("/filter",[QuestionController::class,'filterQuestions']);
+Route::get("/filter",[QuestionController::class,'filterQuestions'])->middleware('usersession');
 
-Route::get("/postanswer",[AnswerController::class,'repliesForQuestions']);
+Route::get("/postanswer",[AnswerController::class,'repliesForQuestions'])->middleware('usersession');
 
-Route::get("/allanswers/{question_id}",[AnswerController::class,'getAllReplies']);
+Route::get("/allanswers/{question_id}",[AnswerController::class,'getAllReplies'])->middleware('usersession');
 
 
-Route::get("/messages/{id}", [ChatController::class, "chat"]);
+Route::get("/messages/{id}", [ChatController::class, "chat"])->middleware('usersession');
 
-Route::get("/chatRoom/{id}", [ChatController::class, "createRoom"]);
+Route::get("/chatRoom/{id}", [ChatController::class, "createRoom"])->middleware('usersession');
 
-Route::get("/chat", [ChatController::class, "rooms"]);
+Route::get("/chat", [ChatController::class, "rooms"])->middleware('usersession');
 
 Route::post("/chatForm", [ChatController::class, "message"]);
 
 Route::post("/searchForm", [ChatController::class, "search"]);
 
 
-Route::get("upvote/{answer_id}",[AnswerController::class,'upVote']);
+Route::get("upvote/{answer_id}",[AnswerController::class,'upVote'])->middleware('usersession');
 
-Route::get("downvote/{answer_id}",[AnswerController::class,'downVote']);
+Route::get("downvote/{answer_id}",[AnswerController::class,'downVote'])->middleware('usersession');
 
 
 Route::get('/signup', function () {
@@ -65,17 +65,16 @@ Route::get('/login', function () {
     return view('login');}
 });
 
-Route::get("/logout",[AuthController::class,'logout']);
+Route::get("/logout",[AuthController::class,'logout'])->middleware('usersession');
 
 Route::post('loginuser',[Authcontroller::class,'loginuser']);
-
 Route::post('signupuser',[Authcontroller::class,'signupuser']);
 
 Route::get('/ask', function () {
     return view('ask');
-});
+})->middleware('usersession');
 
-Route::get('/profile', [ProfileController::class, "fetchUser"]);
+Route::get('/profile', [ProfileController::class, "fetchUser"])->middleware('usersession');
 Route::post('editprofile', [ProfileController::class, "editprofile"]);
 
 Route::post('question', [QuestionController::class, "postQuestion"]);

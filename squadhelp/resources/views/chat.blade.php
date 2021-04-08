@@ -92,7 +92,8 @@
         #profilePicture{
             border: none;
             border-radius: 50%;
-            width: 12%;
+            width: 45px;
+            height: 45px;
             margin: 0;
             margin-right: 5%;
             vertical-align: middle;

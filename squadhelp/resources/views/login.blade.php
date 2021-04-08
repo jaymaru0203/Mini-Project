@@ -145,9 +145,8 @@ button:focus {outline:0 !important;}
 @section('content')
   <div class="wrapper mt-3">
     <div class="container-fluid p-0">
-  <br><br><br>
       <div class="row m-0">
-        <div class="col-lg-7  align-self-center p-0" >
+        <div class="col-lg-6  align-self-center p-0" >
           <div class="row m-0 justify-content-center">
             <form action="loginuser" method="post">
               @csrf
@@ -165,7 +164,7 @@ button:focus {outline:0 !important;}
               <!--  <label for="pass">Password</label> -->
                  <input type="password" name="password" class="form-control" id="pass" placeholder="Your Password">
               </div><span class="errors">@error('password'){{$message}}@enderror</span>
-              <div class="input-group">
+             <!--  <div class="input-group">
                  
                     <div class="form-check col-6">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -176,7 +175,7 @@ button:focus {outline:0 !important;}
                   <label for="forgot-password" class="col-6 p-0">
                     <a href="#" class="float-right" style="color: #5d4a41;;font-size: 12px;">Forgot Password?</a>
                   </label>
-                </div>
+                </div> -->
               <div class=" form-group d-flex justify-content-center" id="btn">
                <button type="submit" class="btn btn-block">Sign In</button>
               </div>
@@ -184,7 +183,7 @@ button:focus {outline:0 !important;}
             </form>
           </div>
         </div>
-        <div class="col-lg-5 p-0">
+        <div class="col-lg-6 p-0">
           <img src= "{{ asset('images/Questions.gif') }}" class="img-responsive fit-image">
         </div>
       </div>

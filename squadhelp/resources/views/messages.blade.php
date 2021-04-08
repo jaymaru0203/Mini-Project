@@ -92,10 +92,39 @@
         #profilePicture{
             border: none;
             border-radius: 50%;
-            width: 12%;
+            width: 45px;
+            height: 45px;
             margin: 0;
             margin-right: 5%;
             vertical-align: middle;
+        }
+
+        .username a{
+            padding: 0 10px;
+            color: unset;
+            text-decoration: unset;
+            cursor: pointer;
+        }
+
+        .username{
+          vertical-align: middle;
+          margin-bottom: 0px;
+          padding: 8px 0; 
+          font-size: 1.6rem; 
+          float: left;
+        }
+
+        .report{
+            float: right;
+            vertical-align: middle;
+            border: none;
+            background-color: #e63600;
+            color: white;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 5px 10px;
+            margin: 4px 5px 0 0;
         }
 
         #notif{
@@ -134,8 +163,8 @@
 
         #topbar #profilePicture{
             width: 45px;
-            margin: 0 1%;
-            float: right;
+            margin:0 10px;
+            float: left;
         }
 
         #chatForm{
@@ -217,6 +246,7 @@
             }
             #chatContainer{
                 padding-bottom: 15%;
+                padding-top: 8%;
             }
             .chatMessage, .chatMessage2{
                 padding: 3%;
@@ -259,7 +289,7 @@
                 $sql2 = "SELECT * FROM Nusers WHERE user_email='$em'";
                 $result = $conn->query($sql2);
                 while($re=$result->fetch_assoc()){ ?>
-                    <img src="{{asset('storage/uploads')}}/<?php echo $re['image']; ?>" id="profilePicture"> <h2><?php echo $re['name'] ?></h2>
+                   <h2 class="username"><a href="/chat"><i class="fas fa-chevron-left"></i></a></h2><img src="{{asset('storage/uploads')}}/<?php echo $re['image']; ?>" id="profilePicture"> <h2 class="username"><?php echo $re['name'] ?></h2><button class="report"><a href="/report">Report</a></button>
                 <?php }}}
                 ?>
             

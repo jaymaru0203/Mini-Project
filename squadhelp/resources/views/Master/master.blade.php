@@ -74,6 +74,7 @@
 
     nav .nav-items li a:hover {
       color: #e5564d;
+      cursor: pointer;
     }
 
     nav form {
@@ -114,7 +115,8 @@
     .profilePicture{
             border: none;
             border-radius: 50%;
-            width: 35px;
+            width: 40px;
+            height: 40px;
             margin: 0;
             background-color: pink;
             vertical-align: middle;
@@ -444,11 +446,11 @@
       position: relative;
     }
 
-    .post-date {
-      position: absolute;
-      right: 2%;
-      top: 15%;
-    }
+.post-date {
+    position: absolute;
+    right: 1%;
+    top: 3%;
+}
 
     .post-date p {
       color: red;
@@ -617,37 +619,42 @@
     </div>
     <div class="logo">LOGO</div>
     <div class="nav-items">
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Feed</a></li>
       <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
       <li><a href="/ask">Ask</a></li>
       <li>
         <a href="/chat" class="notification">
-          <span>Inbox</span>
+          <span>Chat</span>
           <!-- <span class="badge">3</span> -->
         </a>
       </li>
       @if(Session::has('user'))  
-      <li><a href="/logout">Log Out</a></li>
+      <li class="ml-auto"><a href="/logout">Log Out</a></li>
       @else
-      <li><a href="/login">Login</a></li>
-      <li><a href="/signup">Signup</a></li>
+
+      <li class="ml-auto"><a href="/login">Login</a></li>
+      <li ><a href="/signup">Signup</a></li>
+    
       @endif
 
     </div>
-    <div class="search-icon">
-      <span class="fas fa-search"></span>
-    </div>
-    <div class="cancel-icon">
+        <div class="cancel-icon">
       <span class="fas fa-times"></span>
     </div>
-    <form action="#">
+  
+
+  <!--   <form action="#">
       <input type="search" class="search-data" placeholder="Search" required>
       <button type="submit" class="fas fa-search"></button>
       
-    </form>
-    
+    </form> -->
+    @if(Session::has('user'))  
     <a class="profile-a" href="/profile"><img src="{{asset('storage/uploads/'.session()->get('user_img'))}}" class="rounded-circle profilePicture" ></a>
+    @else
+      <div class="search-icon">
+      <span class="fas fa-search" style="color: black;"></span>
+    </div>
+    @endif
   </nav>
 
   <!-- contents -->
