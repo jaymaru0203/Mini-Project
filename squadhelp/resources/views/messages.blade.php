@@ -159,6 +159,7 @@
             box-shadow: 0px 1px 3px 0px #888;
             position: fixed !important;
             z-index: 999999;
+            align-items: center;
         }
 
         #topbar #profilePicture{
@@ -241,6 +242,28 @@
             #message{
                 width: 75%;
             }
+
+            .username{
+                  vertical-align: middle;
+                  margin-bottom: 0px;
+                  padding: 15px 0; 
+                  font-size: 1rem; 
+                  float: left;
+            }
+
+            .report{
+                    float: right;
+                    vertical-align: middle;
+                    border: none;
+                    background-color: #e63600;
+                    color: white;
+                    border-radius: 8px;
+                    font-size: 15px;
+                    font-weight: 500;
+                    padding: 4px 8px;
+                    margin: 8px 5px 0 0;
+                }
+
             #submit{
                 width: 20%;
             }

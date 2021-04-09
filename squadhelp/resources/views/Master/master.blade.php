@@ -454,6 +454,7 @@
 
     .post-date p {
       color: red;
+      margin-top: 10px;
       font-weight: 500;
     }
 

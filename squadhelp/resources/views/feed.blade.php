@@ -9,8 +9,8 @@
     position: absolute;
     font-size: 14px; 
     padding: 5px 10px;
-    top: -40px;
-    right: -15px;
+    top: -20px;
+    right: -10px;
     background-color: #ff2316;
     color: white;
     border-radius: 5px;
@@ -21,8 +21,8 @@
     position: absolute;
     font-size: 14px; 
     padding: 5px 10px;
-    top: -50px;
-    right: -20px;
+    top: -25px;
+    right: -15px;
     background-color: #ff2316;
     color: white;
     border-radius: 5px;
