@@ -218,7 +218,7 @@ button:focus {outline:0 !important;}
         <div class="col-lg-6  align-self-center p-0" >
       
           <div class="row m-0 justify-content-center">
-            <form action="signupuser" method="post">
+            <form action="/signupuser/" method="post">
               @csrf
               <div class="logdet">Register</div>
               @if(Session::get('register_status'))

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nuser;
+use App\Models\ReportAnswer;
+use App\Models\ReportUser;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -65,6 +67,10 @@ class AuthController extends Controller
 		$result = Nuser::where('user_email','=',$req->user_email)->get();
         $res = json_decode($result,true);
 
+		if($req->user_email == "admin@squadhelp.com" && $req->password == "admin123"){
+			$req->session()->put('admin',$req->user_email);
+			return redirect('admin');
+		}
        
          if(sizeof($res)==0){
         // if(true){
@@ -93,10 +99,24 @@ class AuthController extends Controller
              	$req->session()->flush();
              	return redirect('login');
              }
+             if(session()->has('admin')){
+             	$req->session()->flush();
+             	return redirect('login');
+             }
              else{
              	return redirect('signup');
              }
 
 	      }
+		  
+		  public function admin(){
+			$user = Nuser::all();
+			$reportedA = ReportAnswer::all();
+			$reportedU = ReportUser::all();
+
+			return view('admin', ['users'=>$user, 'reportedA'=>$reportedA, 'reportedU'=>$reportedU]);
+		  }
+
+		  
 
 }

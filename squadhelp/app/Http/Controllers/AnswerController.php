@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Vote;
 use Illuminate\Support\Facades\DB;
 
 class AnswerController extends Controller
@@ -30,8 +31,11 @@ class AnswerController extends Controller
 
         // getting the repective question 
         $q = Question::where("question_id",$question_id)->first();
+
+        $email = session()->get('user');
+        $v = Vote::where('user_email', $email);
         
-        return view("replies",["question"=>$q,"answers"=>$a]);
+        return view("replies",["question"=>$q,"answers"=>$a, "votes"=>$v, "flag"=>0]);
         
     }
 
@@ -59,6 +63,14 @@ class AnswerController extends Controller
         $upvote = $a->upvote_count+1;
         $question_id = $a->question_id;
         $b = DB::table('answers')->where('answer_id',$answer_id)->update(['upvote_count'=>$upvote]);
+        if($b){
+            $email = session()->get('user');
+            $vote = new  Vote;
+            $vote->answer_id = $answer_id;
+            $vote->user_email = $email;
+            $vote->flag = TRUE;
+            $vote->save();
+        }
 
         return redirect("allanswers/".$question_id);
     }
@@ -68,7 +80,21 @@ class AnswerController extends Controller
         $downvote = $a->downvote_count+1;
         $question_id = $a->question_id;
         $b = DB::table('answers')->where('answer_id',$answer_id)->update(['downvote_count'=>$downvote]);
+        if($b){
+            $email = session()->get('user');
+            $vote = new  Vote;
+            $vote->answer_id = $answer_id;
+            $vote->user_email = $email;
+            $vote->flag = TRUE;
+            $vote->save();
+        }
 
         return redirect("allanswers/".$question_id);
+    }
+
+    public static function getVote($answer_id){
+        $email = session()->get('user');
+        $a = Vote::where('user_email', $email)->where('answer_id', $answer_id)->count();
+        return $a;
     }
 }

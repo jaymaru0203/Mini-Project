@@ -148,7 +148,7 @@ button:focus {outline:0 !important;}
       <div class="row m-0">
         <div class="col-lg-6  align-self-center p-0" >
           <div class="row m-0 justify-content-center">
-            <form action="loginuser" method="post">
+            <form action="/loginuser" method="post">
               @csrf
               <div  class="logdet">Welcome Back</div>
               @if(Session::get('error'))

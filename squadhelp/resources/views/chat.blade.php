@@ -238,6 +238,13 @@
 
 @section('content')
 <div class="outer">
+<div id="main">
+      @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block" style="width: 70%; margin: 5px auto;">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+                <strong>{{ $message }}</strong>
+        </div>
+    @endif
 <div id="mySidebar" class="sidebar">
         <form id="searchForm" action="searchForm" method="POST">
             @csrf

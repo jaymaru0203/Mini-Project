@@ -7,7 +7,7 @@
 <style type="text/css">
   h2.typeQ{
     position: absolute;
-    font-size: 14px; 
+    font-size: 16px; 
     padding: 5px 10px;
     top: -20px;
     right: -10px;
@@ -32,7 +32,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-
+}
 
 </style>
 @endsection
@@ -114,7 +114,7 @@
       
       <!-- posted questions -->
       @foreach($question as $q)
-      <div class="post-container posted">
+      <div class="post-container posted mb-3">
     
       <div class="userdetails-container">
         <div class="user-image">
@@ -166,28 +166,23 @@
           
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary" type="button">
-                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon" style="vertical-align: middle;"></i></a>
-              </button>
             </div>
             <input type="text" class="form-control" name="answer" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px;vertical-align: middle;"></i></button>
           </div>
-          
         </form>
+        <div style="text-align: center;"><a href="allanswers/{{$q->question_id}}">Show All Answers</a></div>
+
         @else
         <form >
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary" type="button">
-                <a href="allanswers/{{$q->question_id}}"><i class="fas fa-comment-alt message-icon" style="vertical-align: middle;"></i></a>
-              </button>
             </div>
             <input type="text" class="form-control" name="answer" placeholder="You aren't eligible to answer this question..." aria-label="Write an Answer.." aria-describedby="button-addon2" disabled>
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled><i class="fa fa-location-arrow" style="font-size:20px;vertical-align: middle;"></i></button>
           </div>
-          
         </form>
+        <div style="text-align: center;"><a href="allanswers/{{$q->question_id}}">Show All Answers</a></div>
         
         @endif
       </div>
@@ -196,6 +191,6 @@
       @endforeach
  
 
-    </div>
+    </div><br><br><br><br>
 
 @endsection

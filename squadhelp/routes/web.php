@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 
 
 
@@ -48,6 +49,13 @@ Route::get("upvote/{answer_id}",[AnswerController::class,'upVote'])->middleware(
 
 Route::get("downvote/{answer_id}",[AnswerController::class,'downVote'])->middleware('usersession');
 
+Route::get("reportA/{answer_id}",[ReportController::class,'reportA'])->middleware('usersession');
+
+Route::get("reportU/{id}",[ReportController::class,'reportU'])->middleware('usersession');
+
+Route::post("delAns/{answer_id}",[ReportController::class,'delAns']);
+
+Route::post("banUser/{user_id}",[ReportController::class,'banUser']);
 
 Route::get('/signup', function () {
 	if(session()->has('user')){
@@ -64,6 +72,15 @@ Route::get('/login', function () {
 	}else{
     return view('login');}
 });
+
+Route::get('/admin', function () {
+	if(session()->has('admin')){
+		return redirect('/adminPage');
+	}else{
+    return view('login');}
+});
+
+Route::get("/adminPage",[AuthController::class,'admin']);
 
 Route::get("/logout",[AuthController::class,'logout'])->middleware('usersession');
 

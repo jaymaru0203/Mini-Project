@@ -404,7 +404,7 @@
 
 
     .post-container {
-      background-color: rgb(238, 238, 238);
+      background-color: #fff;
       border-radius: 5px;
       width: 90%;
       padding: 1.5rem 1.5rem;

@@ -1,4 +1,5 @@
-`@extends('Master.master')
+@extends('Master.master')
+
 
 @section('title','Answers')
 
@@ -37,6 +38,12 @@
 @section('content')
 
 <div class="right-container">
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-block" style="width: 70%;">
+	<button type="button" class="close" data-dismiss="alert">×</button>	
+        <strong>{{ $message }}</strong>
+</div>
+@endif
 
 <h2 class="question-heading" style="text-transform:uppercase">Question</h2>
 
@@ -86,11 +93,19 @@
 
       </div>
       <div class="votes">
-        <div style="float: left;padding-right:10px;font-size: 20px; "><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</div>
-          <div style="float: left;padding-right:10px;font-size: 20px;"><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</div>
-        </div>
-        <button class="report"><a href="/report/">Report</a></button>
-      </div>
+        @if(\App\Http\Controllers\AnswerController::getVote($a->answer_id) > 0)
+          <div style="float: left;padding-right:10px;font-size: 20px; "><i class="fas fa-arrow-up"></i> {{$a->upvote_count}}</div>
+            <div style="float: left;padding-right:10px;font-size: 20px;"><i class="fas fa-arrow-down"></i> {{$a->downvote_count}}</div>
+            </div>
+            <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+          </div>
+        @else
+          <div style="float: left;padding-right:10px;font-size: 20px; "><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</div>
+            <div style="float: left;padding-right:10px;font-size: 20px;"><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</div>
+            </div>
+            <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+          </div>
+        @endif
 
 @endforeach
 

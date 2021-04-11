@@ -293,7 +293,6 @@
 @section('content')
 <div class="outer">
       
-      <div id="main">
         <div id="topbar">
         <?php 
             $conn = new mysqli('localhost', 'root' , '' , 'laravel');
@@ -312,7 +311,7 @@
                 $sql2 = "SELECT * FROM Nusers WHERE user_email='$em'";
                 $result = $conn->query($sql2);
                 while($re=$result->fetch_assoc()){ ?>
-                   <h2 class="username"><a href="/chat"><i class="fas fa-chevron-left"></i></a></h2><img src="{{asset('storage/uploads')}}/<?php echo $re['image']; ?>" id="profilePicture"> <h2 class="username"><?php echo $re['name'] ?></h2><button class="report"><a href="/report">Report</a></button>
+                   <h2 class="username"><a href="/chat"><i class="fas fa-chevron-left"></i></a></h2><img src="{{asset('storage/uploads')}}/<?php echo $re['image']; ?>" id="profilePicture"> <h2 class="username"><?php echo $re['name'] ?></h2><button class="report"><a href="/reportU/<?php echo $re['id']; ?>">Report</a></button>
                 <?php }}}
                 ?>
             
