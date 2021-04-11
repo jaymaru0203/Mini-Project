@@ -32,6 +32,34 @@
       background: #f2f2f2;
     }
 
+    .loader-container {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    }
+
+
+    #loader {
+        display: block;
+        position: absolute;
+        font-size: 0;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translateY(-50%) translateX(-50%);
+      }
+
+    #loader img {
+        display: block;
+        width: 100%;
+        vertical-align: middle;
+    }
+
     nav {
       position: fixed;
       top: 0;
@@ -449,7 +477,7 @@
 .post-date {
     position: absolute;
     right: 1%;
-    top: 3%;
+    top: -2%;
 }
 
     .post-date p {
@@ -507,7 +535,7 @@
     }
 
     .post-container {
-    background-color: rgb(238, 238, 238);
+    background-color: #fff;
     border-radius: 5px;
     width: 90%;
     padding: 1rem 1rem;
@@ -614,6 +642,12 @@
 <body>
 
   <!-- navbar -->
+   <div id="pre-loader" class="loader-container">
+            <div id="loader">
+               <img src="{{ asset('images/loader1.gif') }}">
+            </div>
+    </div>
+
   <nav>
     <div class="menu-icon">
       <span class="fas fa-bars"></span>
@@ -669,6 +703,10 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <script>
+     jQuery(window).on('load', function(){ // makes sure the whole site is loaded
+         jQuery('#pre-loader').delay(1200).fadeOut(); // will fade out the white DIV that covers the website.
+         });
+
     const menuBtn = document.querySelector(".menu-icon span");
     const searchBtn = document.querySelector(".search-icon");
     const cancelBtn = document.querySelector(".cancel-icon");
