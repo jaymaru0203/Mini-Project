@@ -477,12 +477,12 @@
 .post-date {
     position: absolute;
     right: 1%;
-    top: -2%;
+    top: 2%;
 }
 
     .post-date p {
       color: red;
-      margin-top: 10px;
+      margin-top: 30px;
       font-weight: 500;
     }
 

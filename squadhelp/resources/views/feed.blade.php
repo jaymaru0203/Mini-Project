@@ -160,7 +160,7 @@
 
 
       <div class="question-container">
-        @if($user_details->year == $q->year && $user_details->branch == $q->branch)
+        @if(($user_details->year == $q->year || $q->year == "All") && ($user_details->branch == $q->branch || $q->branch == "All"))
         <form action="postanswer" method="GET">
           <input type="hidden" name="question_id" value="{{$q->question_id}}">
           
