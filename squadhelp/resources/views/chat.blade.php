@@ -281,7 +281,7 @@
         @if(isset($searchUsers))
             @foreach($searchUsers as $user)
                     
-                    <a href="chatRoom/{{$user->id}}"><img src="https://via.placeholder.com/150" id="profilePicture">{{ $user->name }}<p id="chatDate"></p> </a><hr>
+                    <a href="chatRoom/{{$user->id}}"><img src="{{asset('storage/uploads/'.$user->image)}}" class="rounded-circle" id="profilePicture" >{{ $user->name }}<p id="chatDate">{{$user->year}} | {{$user->branch}}</p> </a><hr>
 
                 <!-- <a href="#"><img src="https://via.placeholder.com/150" id="profilePicture">Jay Maru <p id="chatDate"> <span id="notif"> 2 </span> <br> 12/12/21</p> </a><hr> -->
 
