@@ -443,7 +443,7 @@
             </div>
             <div class="col-md-6 pl-4 my-col2">
                 <label for="" class="form-label">Email</label>
-                <input type="email" name="user_email" class="form-control form-control-lg" value={{$user->user_email}} />
+                <input type="email" name="user_email" disabled class="form-control form-control-lg" value={{$user->user_email}} />
                 <span class="error">@error('user_email'){{$message}}@enderror</span>
             </div>
         </div>

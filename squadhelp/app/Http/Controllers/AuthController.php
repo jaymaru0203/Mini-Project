@@ -7,6 +7,7 @@ use App\Models\Nuser;
 use App\Models\ReportAnswer;
 use App\Models\ReportUser;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 
 class AuthController extends Controller
@@ -23,10 +24,11 @@ class AuthController extends Controller
 
 			'branch'=>'required|not_in:0',
 
-			'user_email'=>'required|email',
+			'user_email'=>'required|email|ends_with:@somaiya.edu',
 
 			'password'=>'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
 		]);
+
 
 		$result = Nuser::where('user_email','=',$req->user_email)->count();
           
@@ -43,6 +45,15 @@ class AuthController extends Controller
           $req->session()->flash('register_status','User has been registered successfully');
           $req->session()->put('user',$req->user_email);
           $req->session()->put('user_img',"null.jpg");
+
+           $data = ['name'=>$req->name,
+           'year'=>$req->year,'branch'=>$req->branch]; 
+
+           Mail::send('mail',$data,function($messages) use ($req){
+                 $messages->to($req->user_email);
+                 $messages->subject('Welcome to SquadHelp');
+           });
+
           return redirect('/');
            }
            else{

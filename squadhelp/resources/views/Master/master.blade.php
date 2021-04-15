@@ -482,7 +482,7 @@
 
     .post-date p {
       color: red;
-      margin-top: 30px;
+      margin-top: 50px;
       font-weight: 500;
     }
 
@@ -544,6 +544,13 @@
       .post-date {
         font-size: .8rem;
       }
+
+          .post-date p {
+            color: red;
+            margin-top: 53px;
+            font-weight: 500;
+            font-size: 10px;
+          }
 
       .post-container h1 {
         font-size: 1.2rem;
@@ -652,7 +659,7 @@
     <div class="menu-icon">
       <span class="fas fa-bars"></span>
     </div>
-    <div class="logo">LOGO</div>
+    <div class="logo"><img src="{{ asset('images/logo.png') }}" width="180px"></div>
     <div class="nav-items">
       <li><a href="/">Feed</a></li>
       <li><a href="#">About</a></li>

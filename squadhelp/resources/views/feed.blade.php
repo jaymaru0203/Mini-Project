@@ -16,6 +16,41 @@
     border-radius: 5px;
 }
 
+.selectdiv select{
+  width: 100%;
+  min-width:140px;
+  height: 48px;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #434343;
+  border-radius: 5px;
+  border: 1px solid #d6d6d6;
+  padding: 6px 12px; 
+
+}
+
+.selectdiv{
+  position: relative;
+}
+
+.selectdiv:after {
+    content: '\f107';
+    font: normal normal normal 15px/1 FontAwesome;
+    color: #737b83;
+    right: 7px;
+    top: 3px;
+    height: 34px;
+    padding: 15px 0px 0px 8px;
+    position: absolute;
+    pointer-events: none;
+}
+
+.selectdiv select{
+ -webkit-appearance: none;
+}
+
+
 @media screen and (max-width: 650px) {
   h2.typeQ{
     position: absolute;
@@ -28,6 +63,13 @@
     border-radius: 5px;
 }
 
+
+.selectdiv select{
+
+ margin: 5px 0px;
+}
+
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -38,39 +80,6 @@
 @endsection
 
 @section('content')
-<!-- <div class="left-container">
-
-<div class="col-sm p-2 d-flex justify-content-center align-items-center">
-  <div class="circle"><img src="{{URL::asset('/images/fy.png')}}" alt=""></div>
-  <span class="badge badge-notify">3</span>
-  <span class="year">FY</span>
-</div>
-
-<div class="col-sm mt-2  p-2 d-flex justify-content-center align-items-center">
-    <div class="circle"><img src="{{URL::asset('/images/sy.png')}}" alt=""></div>
-    <span class="badge badge-notify">1</span>
-    <span class="year">SY</span>
-</div>
-
-<div class="col-sm mt-2 p-2 d-flex justify-content-center align-items-center">
-    <div class="circle"><img src="{{URL::asset('/images/ty.png')}}" alt=""></div>
-    <span class="badge badge-notify">5</span>
-    <span class="year">TY</span>
-</div>
-
-<div class="col-sm mt-2 p-2 d-flex justify-content-center align-items-center">
-    <div class="circle"><img src="{{URL::asset('/images/ly.png')}}" alt=""></div>
-    <span class="badge badge-notify">2</span>
-    <span class="year">LY</span>
-</div>
-
-<div class="col-sm mt-2 p-2 d-flex justify-content-center align-items-center">
-    <div class="circle ml-4"><img src="{{URL::asset('/images/others.png')}}" alt=""></div>
-    <span class="badge badge-notify">0</span>
-    <span class="year">Other</span>
-</div>
-
-</div> -->
 
     <div class="right-container">
       
@@ -78,7 +87,7 @@
       <div class="post-container filter" >
         <h1 class="filter-heading">Filter Results</h1>
         <form action="filter" method="GET" class="flex-container">
-          <div class="filter-options">
+        <!--   <div class="filter-options">
             <input type="radio" name="filterData" id="placements" class="checkbox" value="Placements">
             <label for="placements">Placements</label>
           </div>
@@ -105,10 +114,55 @@
           <div class="filter-options">
             <input type="radio" name="filterData" id="all" class="checkbox" value="all">
             <label for="all">All</label>
+          </div> -->
+         <div class="container-fluid">
+          <div class="row">
+           <div class="col-lg-3 col-md-3">
+           <div class="selectdiv">  
+                  <select name="filtercategory" id="filtercategory">
+                    <option value="All">Select Category</option>
+                    <option value="Placements">Placements</option>
+                    <option value="Internships">Internships</option>
+                    <option value="Hackathons">Hackathons</option>
+                    <option value="Co-curricular">Co-curricular</option>
+                    <option value="Others">Others</option>
+                    <option value="All">All</option>
+
+            </select>
           </div>
-          <div class="filter-options">
-            <button type="submit" class="filter-btn">Filter</button>
           </div>
+          <div class="col-lg-3 col-md-3">
+          <div class="selectdiv">  
+                  <select name="filterbranch" id="filterbranch">
+                    <option value="All">Select Branch</option>
+                    <option value="COMPS">COMPS</option>
+                    <option value="ETRX">ETRX</option>
+                    <option value="EXTC">EXTC</option>
+                    <option value="IT">IT</option>
+                    <option value="MECH">MECH</option>
+                    <option value="All">All</option>
+                  </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <div class="selectdiv">  
+                  <select name="filteryear" id="filteryear">
+                    <option value="All">Select Year </option>
+                    <option value="FY">FY</option>
+                    <option value="SY">SY</option>
+                    <option value="TY">TY</option>
+                    <option value="LY">LY</option>
+                    <option value="All">All</option>
+                  </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <div class="filter-options">
+              <button type="submit" class="filter-btn">Filter</button>
+            </div>
+          </div>
+        </div>
+        </div> 
         </form>
       </div>
       

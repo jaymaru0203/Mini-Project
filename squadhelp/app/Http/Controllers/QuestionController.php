@@ -49,18 +49,52 @@ class QuestionController extends Controller
     }
 
     function filterQuestions(Request $req){
-        $filter_data = $req->filterData;
+        $filtercategory = $req->filtercategory;
+        $filterbranch = $req->filterbranch;
+        $filteryear = $req->filteryear;
 
         $user_email = $req->session()->get("user");
         $user_details = Nuser::where("user_email",$user_email)->first();
         
-        if($filter_data=="all"){
-            $q = Question::all();
-            return view('feed',['question'=>$q, "user_details"=>$user_details]);
-        }else{
-            $q = Question::where('type_of_question',$filter_data)->get();
-            return view('feed',['question'=>$q, "user_details"=>$user_details]);
+        if($filtercategory=="All"){
+           if($filterbranch=="All"){
+              if($filteryear=="All"){
+                $q = Question::all();
+              }
+              else{
+                $q = Question::where('year',$filteryear)->get();
+              }
+           }
+           else{
+              if($filteryear=="All"){
+                $q = Question::where('branch',$filterbranch)->get();
+              }
+              else{
+                $q = Question::where('year',$filteryear)->where('branch',$filterbranch)->get();
+              }
+           }
         }
+        else{
+            if($filterbranch=="All"){
+              if($filteryear=="All"){
+                $q = Question::where('type_of_question',$filtercategory)->get();
+              }
+              else{
+                $q = Question::where('year',$filteryear)->where('type_of_question',$filtercategory)->get();
+              }
+           }
+           else{
+              if($filteryear=="All"){
+                $q = Question::where('branch',$filterbranch)->where('type_of_question',$filtercategory)->get();
+              }
+              else{
+                $q = Question::where('year',$filteryear)->where('branch',$filterbranch)->where('type_of_question',$filtercategory)->get();
+              }
+           }
+
+        }
+          
+        return view('feed',['question'=>$q, "user_details"=>$user_details]);
         
     }
 }
