@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Nuser;
+use App\Models\Question;
+use App\Models\Answer;
 
 class ProfileController extends Controller
 {
@@ -12,7 +14,9 @@ class ProfileController extends Controller
     {
         $email = $req->session()->get("user");
         $user = Nuser::where('user_email', $email)->first();
-        return view("profile", ["user" => $user]);
+        $questions = Question::where('user_email', $email);
+        $answers = Answer::where('answer_by', $email);
+        return view("profile", ["user" => $user, "q" => $questions, "a" => $answers]);
     }
 
     function editprofile(Request $req)

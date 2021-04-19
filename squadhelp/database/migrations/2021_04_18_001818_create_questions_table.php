@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id('question_id');
             $table->string('question_content');
             $table->string('user_email');
+            $table->string('qsFor');
             $table->string('branch');
             $table->string('year');
             $table->string('type_of_question');

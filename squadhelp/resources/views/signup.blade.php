@@ -136,9 +136,13 @@ input::placeholder  { /* Chrome, Firefox, Opera, Safari 10.1+ */
 }
 
 .fit-image{
-width: 100%;
+width: 95%;
 object-fit: cover;
 height: auto; /* only if you want fixed height */
+}
+
+body{
+  background-color: #fff;
 }
 
 @media (max-width: 990px) {
@@ -180,6 +184,7 @@ input[type=radio] {
     padding: 15px 0px 0px 8px;
     position: absolute;
     pointer-events: none;
+    display: none;
 }
 
 #btn{
@@ -232,12 +237,12 @@ button:focus {outline:0 !important;}
 
                <div class="input-group">
                     <div class="form-check col-6">
-                    <input class="form-check-input" type="radio" name="status" value="Student">
+                    <input class="form-check-input" type="radio" name="status" value="Student" onchange="show(this)">
                     <label for="remember" class="form-check-label radioname"
                     >Student</label>
                   </div>
                    <div class="form-check col-6">
-                    <input class="form-check-input" type="radio" name="status" value="Teacher">
+                    <input class="form-check-input" type="radio" name="status" value="Teacher" onchange="hide(this)">
                     <label for="remember" class="form-check-label radioname" 
 
                     >Teacher</label>
@@ -246,8 +251,8 @@ button:focus {outline:0 !important;}
                 <span class="error">@error('status'){{$message}}@enderror</span>
 
                 <div class="selectdiv">  
-                  <select name="year" id="year">
-                    <option value="0">Select Year of Study</option>
+                  <select name="year" id="year" style="visibility: hidden;">
+                    <option value="NA">Select Year of Study</option>
                     <option value="FY">FY</option>
                     <option value="SY">SY</option>
                     <option value="TY">TY</option>
@@ -274,7 +279,7 @@ button:focus {outline:0 !important;}
 
               <div class="form-group">
                  <input type="password" class="form-control" name="password" placeholder="Your Password">
-                 <span class="text-muted" style="font-size: 10px;">Password must contain atleast 1 Uppercase, 1 Lowercase Letter, 1 Number<br> and 1 Special Character</span>
+                 <!-- <span class="text-muted" style="font-size: 10px;">Password must contain atleast 1 Uppercase, 1 Lowercase Letter, 1 Number<br> and 1 Special Character</span> -->
               </div>
               <span class="error">@error('password'){{$message}}@enderror</span>
 
@@ -287,11 +292,27 @@ button:focus {outline:0 !important;}
           </div>
         </div>
         <div class="col-lg-6 p-0">
-          <img src="images/Questions_SIN.gif" class="img-responsive fit-image">
+          <img src="/images/Questions_SIN.gif" class="img-responsive fit-image">
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+
+  function show(x){
+    if(x.checked){
+      document.getElementById("year").style.visibility = "visible";
+
+    }
+  }
+  function hide(x){
+    if(x.checked){
+      document.getElementById("year").style.visibility = "hidden";
+    }
+  }
+
+</script>
 
 @endsection
 

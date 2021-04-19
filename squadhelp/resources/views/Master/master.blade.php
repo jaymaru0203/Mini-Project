@@ -299,6 +299,8 @@
 
       nav .cancel-icon.show {
         display: block;
+        position: absolute;
+        left: 0;
       }
     }
 
@@ -337,6 +339,11 @@
         margin: 0 20px;
       }
 
+      nav .cancel-icon{
+        position: absolute;
+        left: 0;
+      }
+
       nav form {
         right: 30px;
       }
@@ -350,7 +357,12 @@
         margin: 0 10px;
         font-size: 16px;
       }
+      nav .cancel-icon{
+        position: absolute;
+        left: 0;
+      }
     }
+
 
     .content {
       position: absolute;

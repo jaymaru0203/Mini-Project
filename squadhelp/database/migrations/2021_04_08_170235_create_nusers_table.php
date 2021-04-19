@@ -17,11 +17,11 @@ class CreateNusersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status');
-            $table->string('year');
+            $table->string('year')->nullable();
             $table->string('branch');
             $table->string('user_email');
             $table->string('password');
-            $table->string('image');
+            $table->string('image')->default('null.jpg');
             $table->timestamps();
         });
     }
