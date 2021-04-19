@@ -5,6 +5,34 @@
 @section('header')
 
 <style type="text/css">
+ .loader-container {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    }
+
+
+    #loader {
+        display: block;
+        position: absolute;
+        font-size: 0;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translateY(-50%) translateX(-50%);
+      }
+
+    #loader img {
+        display: block;
+        width: 100%;
+        vertical-align: middle;}
+
+
   h2.typeQ{
     position: absolute;
     font-size: 16px; 
@@ -80,6 +108,11 @@
 @endsection
 
 @section('content')
+<div id="pre-loader" class="loader-container">
+            <div id="loader">
+               <img src="{{ asset('images/loader1.gif') }}">
+            </div>
+    </div>
 
     <div class="right-container">
       
@@ -268,4 +301,14 @@
 
     </div><br><br><br><br>
 
+
+
+@endsection
+
+@section('script')
+<script type="text/javascript">
+      jQuery(window).on('load', function(){ 
+         jQuery('#pre-loader').delay(1200).fadeOut(); 
+         });
+</script>
 @endsection

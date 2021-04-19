@@ -32,6 +32,8 @@
     font-size: 15px;
   }
 
+  
+
 
 </style>
 @endsection
@@ -51,16 +53,18 @@
 <div class="post-container posted">
 
 <div class="userdetails-container">
+  <div class="user-image">
+     <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($question->user_email)->image}}" alt="">
+  </div>
 
 <div class="user-details">
 
-      <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($question->user_email)->image}}" alt="">
-        
+     
       <h1>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->name }}</h1>
         
-      {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->user_email }}
+      <h2>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->user_email }}</h2>
          
-        <h6>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->status }} of {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->year }}</h6>
+        <h2>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->status }} of {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->year }}</h2>
         </div>
   
   <div class="post-date">
@@ -86,15 +90,18 @@
 <div class="post-container posted">
 
       <div class="userdetails-container">
+        <div class="user-image">
+           <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($a->answer_by)->image}}" alt="">
+        
+        </div>
       <div class="user-details">
 
-      <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($a->answer_by)->image}}" alt="">
-        
+     
       <h1>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->name }}</h1>
         
-      {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->user_email }}
+      <h2>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->user_email }}</h2>
          
-        <h6>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->status }} of {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->year }}</h6>
+        <h2>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->status }} of {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->year }}</h2>
         </div>
 
         <div class="post-date">

@@ -94,6 +94,7 @@ Route::get('/ask', function () {
 
 Route::get('/profile', [ProfileController::class, "fetchUser"])->middleware('usersession');
 Route::post('editprofile', [ProfileController::class, "editprofile"]);
+Route::post('editimage', [ProfileController::class, "editimage"]);
 
 Route::post('question', [QuestionController::class, "postQuestion"]);
 

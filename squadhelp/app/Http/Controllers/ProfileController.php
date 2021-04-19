@@ -14,10 +14,28 @@ class ProfileController extends Controller
     {
         $email = $req->session()->get("user");
         $user = Nuser::where('user_email', $email)->first();
-        $questions = Question::where('user_email', $email);
-        $answers = Answer::where('answer_by', $email);
-        return view("profile", ["user" => $user, "q" => $questions, "a" => $answers]);
+        $questions = Question::where('user_email', $email)->get();
+        $answers = Answer::where('answer_by', $email)->get();
+        return view("profile", ["user" => $user, "question" => $questions, "answers" => $answers]);
     }
+
+     function editimage(Request $req){
+        $email = $req->session()->get("user");
+        $user = Nuser::where('user_email', $email)->first();
+        $id = $user->id;
+
+
+        $fileName = $id . '.' . $req->file('image')->extension();        
+        $req->file('image')->storeAs('public/uploads', $fileName);
+
+            $user->image = $fileName;
+            $user->save();
+            $req->session()->put('user_img', $fileName);
+            $req->session()->flash('message', 'Profile Image Updated Successfully!');
+
+        return redirect('profile');
+
+     }
 
     function editprofile(Request $req)
     {
@@ -31,25 +49,16 @@ class ProfileController extends Controller
 
             'user_email' => 'email',
 
-            'old_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'old_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
 
-            'new_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'new_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
 
         ], [
-            'password.regex'  => 'The :attribute must contain at least one uppercase or lowercase letter, number and special character.',
+            'password.regex' => 'Password must contain letters and numbers',
         ]);
 
-        $email = $req->session()->get("user");
-        $user = Nuser::where('user_email', $email)->first();
-        $id = $user->id;
-
-        // $file = $req->file('image');
-        // $ext = $file->getClientOriginalExtension();
-        // $file->move(public_path().'/uploads/',$user->id.'.'.$ext);
-
-        $fileName = $id . '.' . $req->file('image')->extension();        
-        $req->file('image')->storeAs('public/uploads', $fileName);
-
+       $email = $req->session()->get("user");
+    $user = Nuser::where('user_email', $email)->first();
         
 
         if (Hash::check($req->old_password, $user->password)) {
@@ -59,10 +68,8 @@ class ProfileController extends Controller
             $user->branch = $req->branch;
             $user->year = $req->year;
             $user->password = Hash::make($req->new_password);
-            $user->image = $fileName;
             $user->save();
             $req->session()->put('user', $req->user_email);
-            $req->session()->put('user_img', $fileName);
             $req->session()->flash('message', 'Profile Updated Successfully!');
 
         } else {

@@ -4,8 +4,71 @@
 
 @section('header')
 <style>
+     .loader-container {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    }
+
+
+    #loader {
+        display: block;
+        position: absolute;
+        font-size: 0;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translateY(-50%) translateX(-50%);
+      }
+
+    #loader img {
+        display: block;
+        width: 100%;
+        vertical-align: middle;}
+
+         h2.typeQ{
+    position: absolute;
+    font-size: 16px; 
+    padding: 5px 10px;
+    top: -20px;
+    right: -10px;
+    background-color: #ff2316;
+    color: white;
+    border-radius: 5px;
+}
+
+ .report{
+    float: right;
+    border: none;
+    background-color: #e63600;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 4px 8px;
+    margin: 4px 5px 0 0;
+        }
+
+  .report a{
+    color: unset;
+    text-decoration:unset;
+  }
+
+  .votes{
+    float: left;
+    display: inline;
+  }
+
+
     #prof-container {
         margin-top: 8em !important;
+        margin-right: 10px;
+        margin-left: 10px;
     }
 
     #prof-container .my-img {
@@ -80,12 +143,38 @@
         outline: none;
     }
 
-    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
-        background: none;
+    .nav-tabs .nav-link.active {
+
+    color: #e5564d;
+    background-color: #f2f2f2;
+    border-color:#f2f2f2 #f2f2f2;
+    border-bottom: 3px solid #e5564d;
+    }
+    .nav-tabs .nav-link.active:hover{
+        border-color:#f2f2f2 #f2f2f2;
+        border-bottom: 3px solid #e5564d;
+    }
+    .nav-tabs .nav-link:hover{
+        border: none;
+    }
+    .nav-tabs .nav-link{
+      padding: 10px 50px;
     }
 
-    .nav-tabs .nav-link.active{
-        border-bottom-color: #f2f2f2;
+    .nav-tabs .nav-item button:focus{
+      outline: none;
+    }
+
+    .nav-link{
+      background-color: #f2f2f2;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #636262;
+    }
+
+    .nav-tabs {
+       border: none;
     }
 
     @media only screen and (max-width: 1500px) {
@@ -106,6 +195,20 @@
         #prof-container .btn-div {
             padding: 0 12rem;
         }
+
+        .nav-tabs .nav-link{
+          padding: 10px 30px;
+        }
+
+        .nav-link{
+          background-color: #f2f2f2;
+          font-size: 1rem;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: #636262;
+        }
+
+
     }
 
     @media only screen and (max-width: 767px) {
@@ -143,9 +246,17 @@
         }
     }
 
-    @media only screen and (max-width: 709px) {
-        #prof-container .prof-nav-link {
-            font-size: 1.2rem;
+    @media only screen and (max-width: 730px) {
+     .nav-tabs .nav-link{
+          padding: 10px 20px;
+        }
+
+        .nav-link{
+          background-color: #f2f2f2;
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          color: #636262;
         }
     }
 
@@ -187,6 +298,17 @@
         #prof-container .prof-nav-link {
             font-size: 1em;
         }
+          h2.typeQ{
+    position: absolute;
+    font-size: 14px; 
+    padding: 5px 10px;
+    top: -25px;
+    right: -15px;
+    background-color: #ff2316;
+    color: white;
+    border-radius: 5px;
+}
+
     }
 
     @media only screen and (max-width: 608px) {
@@ -417,8 +539,12 @@
 @endsection
 
 @section('content')
-
-<div id="prof-container" class="m-5 px-5 pb-0">
+<div id="pre-loader" class="loader-container">
+            <div id="loader">
+               <img src="{{ asset('images/loader1.gif') }}">
+            </div>
+    </div>
+<div id="prof-container" class="px-5 pb-0">
     <div class="row">
         <div class="col-2">
             <img src="{{asset('storage/uploads/'.session()->get('user_img'))}}" class="rounded-circle my-img" />
@@ -452,13 +578,13 @@
 
     <ul class="nav nav-tabs justify-content-center mt-5 submenu" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link prof-nav-link active" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" >Profile</button>
+            <button class="nav-link  active" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" >Profile</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link prof-nav-link" id="questions-tab" data-toggle="tab" data-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false" >Your Questions</button>
+            <button class="nav-link" id="questions-tab" data-toggle="tab" data-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false" >Your Questions</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link prof-nav-link" id="answers-tab" data-toggle="tab" data-target="#answers" type="button" role="tab" aria-controls="answers" aria-selected="false" >Your Answers</button>
+            <button class="nav-link " id="answers-tab" data-toggle="tab" data-target="#answers" type="button" role="tab" aria-controls="answers" aria-selected="false" >Your Answers</button>
         </li>
     </ul>
 
@@ -466,7 +592,7 @@
     <div class="tab-content" id="myTabContent">
 
         <div class="tab-pane fade show active"  id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <form class="edit-form mt-4" method="post" action="editprofile" enctype="multipart/form-data">
+            <form class="edit-form mt-4" method="post" action="editprofile">
                 @csrf
 
                 <div class="form-row">
@@ -522,6 +648,15 @@
                         <span class="error">@error('new_password'){{$message}}@enderror</span>
                     </div>
                 </div>
+                  <div class="mt-5 btn-div">
+                    <button type="submit" class="btn my-btn btn-lg btn-block">
+                        Save Changes
+                    </button>
+                </div>
+                </form>
+
+                <form class="edit-form mt-4" method="post" action="editimage" enctype="multipart/form-data">
+                      @csrf
                 <div class="form-row mt-4">
                     <div class="col my-col3">
                         <label for="" class="form-label">Profile Image</label><br>
@@ -531,20 +666,162 @@
                 </div>
                 <div class="mt-5 btn-div">
                     <button type="submit" class="btn my-btn btn-lg btn-block">
-                        Save Changes
+                        Edit Image
                     </button>
                 </div>
             </form>
+
         </div>
 
         <div class="tab-pane fade"  id="questions" role="tabpanel" aria-labelledby="questions-tab">
-            Questions Tab
+                  <!-- posted questions -->
+
+      @foreach($question as $q)
+         <div class=" d-flex justify-content-center">   
+      <div class="post-container posted mb-3">
+    
+      <div class="userdetails-container">
+        <div class="user-image">
+
+
+         <?php 
+            $conn = new mysqli('localhost', 'root' , '' , 'laravel');
+            $email = session()->get('user');
+
+            $sql = "SELECT * FROM nusers WHERE user_email='$email'";
+            $res = $conn->query($sql);
+            if($res->num_rows > 0){
+            while($r=$res->fetch_assoc()){ ?>
+
+           <img src="{{asset('storage/uploads')}}/<?php echo $r['image']; ?>" alt="">
+
+         
+          </div>
+
+        <div class="user-details">
+          <h1><?php echo $r['name']; ?></h1>
+            <?php }} ?>
+            @if($q->qsFor == "Teacher")
+              <h2>Question For : {{ $q->qsFor }}s | {{ $q->branch }}</h2>
+            @else
+              <h2>Question For : {{ $q->year }} | {{ $q->branch }}</h2>
+            @endif
         </div>
 
+        <div class="post-date">
+          <h2 class="typeQ">{{ $q->type_of_question }}</h2>
+          <p>{{ $q->created_at }}</p>
+        </div>
+          
+      </div>
+
+      <!-- question -->
+      <div class="row question-info">
+        
+        <div class="col-11 question">
+          <p>{{ $q->question_content }}</p>
+        </div>
+
+      </div>
+
+<!-- ADD TEACHER LOGIC HERE REST ALL IS DONE -->
+      <div class="question-container">
+        @if(($user->branch == $q->branch || $q->branch == "All") && (( ($user->status == "Student" && $q->qsFor == "Student") && ($user->year == $q->year || $q->year == "All")) || ($user->status == "Teacher" && $q->qsFor == "Teacher")))
+        <form action="postanswer" method="GET">
+          <input type="hidden" name="question_id" value="{{$q->question_id}}">
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control" name="answer" placeholder="Write an Answer.." aria-label="Write an Answer.." aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-location-arrow" style="font-size:20px;vertical-align: middle;"></i></button>
+          </div>
+        </form>
+        <div style="text-align: center;"><a href="allanswers/{{$q->question_id}}">Show All Answers</a></div>
+
+        @else
+        <form >
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control" name="answer" placeholder="You aren't eligible to answer this question..." aria-label="Write an Answer.." aria-describedby="button-addon2" disabled>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled><i class="fa fa-location-arrow" style="font-size:20px;vertical-align: middle;"></i></button>
+          </div>
+        </form>
+        <div style="text-align: center;"><a href="allanswers/{{$q->question_id}}">Show All Answers</a></div>
+        
+        @endif
+      </div>
+      </div>
+           </div>
+         @endforeach
+    
+       </div> 
+
         <div class="tab-pane fade"  id="answers" role="tabpanel" aria-labelledby="answers-tab">
-            Answers Tab
+            
+            @foreach($answers as $a)
+<div class="d-flex justify-content-center">
+<div class="post-container posted">
+
+      <div class="userdetails-container">
+        <div class="user-image">
+           <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($a->answer_by)->image}}" alt="">
+        
+        </div>
+      <div class="user-details">
+
+     
+      <h1>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->name }}</h1>
+        
+      <h2>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->user_email }}</h2>
+         
+        <h2>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->status }} of {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->year }}</h2>
+        </div>
+
+        <div class="post-date">
+             <a href="allanswers/{{ \App\Http\Controllers\AnswerController::getAnswer($a->answer_id)->question_id }}"><h2 class="typeQ">Question</h2></a>
+          <p>{{$a->created_at}}</p>
+        </div>
+          
+      </div>
+
+      <!-- question -->
+      <div class="row question-info">
+        
+        <div class="col-12 question">
+          <p style="text-transform:uppercase;">{{$a->answer}}</p>
+        </div>
+
+      </div>
+      <div class="votes">
+        @if(\App\Http\Controllers\AnswerController::getVote($a->answer_id) > 0)
+          <div style="float: left;padding-right:10px;font-size: 20px; "><i class="fas fa-arrow-up"></i> {{$a->upvote_count}}</div>
+            <div style="float: left;padding-right:10px;font-size: 20px;"><i class="fas fa-arrow-down"></i> {{$a->downvote_count}}</div>
+            </div>
+            <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+          </div>
+        @else
+          <div style="float: left;padding-right:10px;font-size: 20px; "><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</div>
+            <div style="float: left;padding-right:10px;font-size: 20px;"><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</div>
+            </div>
+            <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+          </div>
+        @endif
+</div>
+@endforeach
+
         </div>
 
     </div>
 </div>
+
+@endsection
+
+@section('script')
+<script type="text/javascript">
+      jQuery(window).on('load', function(){ 
+         jQuery('#pre-loader').delay(1200).fadeOut(); 
+         });
+</script>
 @endsection

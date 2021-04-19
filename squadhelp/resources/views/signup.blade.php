@@ -12,6 +12,33 @@
     align-items: stretch;
 }
 
+ .loader-container {
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    }
+
+
+    #loader {
+        display: block;
+        position: absolute;
+        font-size: 0;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translateY(-50%) translateX(-50%);
+      }
+
+    #loader img {
+        display: block;
+        width: 100%;
+        vertical-align: middle;}
+
 .error{
   color: red;
   font-size: 12px;
@@ -184,7 +211,6 @@ input[type=radio] {
     padding: 15px 0px 0px 8px;
     position: absolute;
     pointer-events: none;
-    display: none;
 }
 
 #btn{
@@ -217,7 +243,13 @@ button:focus {outline:0 !important;}
 @endsection
 
 @section('content')
+  <div id="pre-loader" class="loader-container">
+            <div id="loader">
+               <img src="{{ asset('images/loader1.gif') }}">
+            </div>
+  </div>
   <div class="wrapper mt-4">
+
     <div class="container-fluid p-0">
       <div class="row m-0">
         <div class="col-lg-6  align-self-center p-0" >
@@ -250,8 +282,8 @@ button:focus {outline:0 !important;}
                 </div>
                 <span class="error">@error('status'){{$message}}@enderror</span>
 
-                <div class="selectdiv">  
-                  <select name="year" id="year" style="visibility: hidden;">
+                <div class="selectdiv" id="year" style="display: none;">  
+                  <select name="year">
                     <option value="NA">Select Year of Study</option>
                     <option value="FY">FY</option>
                     <option value="SY">SY</option>
@@ -297,24 +329,26 @@ button:focus {outline:0 !important;}
       </div>
     </div>
   </div>
+@endsection
 
-  <script>
+@section('script')
+<script type="text/javascript">
+      jQuery(window).on('load', function(){ 
+         jQuery('#pre-loader').delay(1200).fadeOut(); 
+         });
 
-  function show(x){
+        function show(x){
     if(x.checked){
-      document.getElementById("year").style.visibility = "visible";
+      document.getElementById("year").style.display = "block";
 
     }
   }
   function hide(x){
     if(x.checked){
-      document.getElementById("year").style.visibility = "hidden";
+      document.getElementById("year").style.display = "none";
     }
   }
-
 </script>
-
 @endsection
-
 
 

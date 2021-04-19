@@ -32,7 +32,7 @@
       background: #f2f2f2;
     }
 
-    .loader-container {
+/*    .loader-container {
     background: #fff;
     bottom: 0;
     left: 0;
@@ -58,7 +58,7 @@
         display: block;
         width: 100%;
         vertical-align: middle;
-    }
+    }*/
 
     nav {
       position: fixed;
@@ -660,12 +660,12 @@
 
 <body>
   <!-- navbar -->
-   <div id="pre-loader" class="loader-container">
+<!--    <div id="pre-loader" class="loader-container">
             <div id="loader">
                <img src="{{ asset('images/loader1.gif') }}">
             </div>
     </div>
-
+ -->
   <nav>
     <div class="menu-icon">
       <span class="fas fa-bars"></span>
@@ -711,19 +711,16 @@
   </nav>
 
   <!-- contents -->
-  <div>
     @yield('content')
-  </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+  @yield('script')
+
   <script>
-     jQuery(window).on('load', function(){ // makes sure the whole site is loaded
-         jQuery('#pre-loader').delay(1200).fadeOut(); // will fade out the white DIV that covers the website.
-         });
 
     const menuBtn = document.querySelector(".menu-icon span");
     const searchBtn = document.querySelector(".search-icon");

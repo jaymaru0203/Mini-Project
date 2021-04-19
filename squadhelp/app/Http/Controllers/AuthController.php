@@ -29,7 +29,7 @@ class AuthController extends Controller
 			'password'=>'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
 		], [
             'user_email.ends_with'  => 'Kindly Signup Using a Valid Somaiya Email ID',
-			'password.regex' => 'Password must contain atleast 1 Letter and 1 Number'
+			'password.regex' => 'Password must contain letters and numbers'
         ]);
 
 
@@ -141,5 +141,6 @@ class AuthController extends Controller
 			  $user = Nuser::where('user_email', $email)->first();
 			  return $user;
 		  }
+
 
 }

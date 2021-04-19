@@ -28,7 +28,7 @@ class AnswerController extends Controller
 
     function getAllReplies($question_id){
         // getting all the replies associated with the respective queestion id
-        $a = Answer::where("question_id",$question_id)->get();
+        $a = Answer::where("question_id",$question_id)->orderBy('upvote_count','desc')->get();
 
         // getting the repective question 
         $q = Question::where("question_id",$question_id)->first();
@@ -98,5 +98,10 @@ class AnswerController extends Controller
         $email = session()->get('user');
         $a = Vote::where('user_email', $email)->where('answer_id', $answer_id)->count();
         return $a;
+    }
+
+    public static function getAnswer($answer_id){
+       $aid = Answer::where('answer_id', $answer_id)->first();
+              return $aid;
     }
 }

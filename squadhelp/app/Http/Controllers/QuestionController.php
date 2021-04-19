@@ -44,10 +44,10 @@ class QuestionController extends Controller
         
         $user_details = Nuser::where("user_email",$user_email)->first();
         if($user_details->status == "Teacher"){
-          $q = Question::where("qsFor", "Teacher")->get();
+          $q = Question::where("qsFor", "Teacher")->latest()->get();
         }
         else{
-          $q = Question::all();
+          $q = Question::latest()->get();
         }
         
         return view('feed',['question'=>$q,"user_details"=>$user_details]);
