@@ -26,16 +26,25 @@ class AuthController extends Controller
 
 			'user_email'=>'required|email|ends_with:@somaiya.edu',
 
-			'password'=>'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
-		]);
+			'password'=>'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
+		], [
+            'user_email.ends_with'  => 'Kindly Signup Using a Valid Somaiya Email ID',
+			'password.regex' => 'Password must contain atleast 1 Letter and 1 Number'
+        ]);
 
 
 		$result = Nuser::where('user_email','=',$req->user_email)->count();
           
 
         if($result==0){
+			if($req->status == "Teacher"){
+				$name = "Prof. " . $req->name;
+			}
+			else{
+				$name = $req->name;
+			}
 		  $p = new Nuser;
-          $p->name = $req->name;
+          $p->name = $name;
           $p->status =$req->status;
           $p->year= $req->year;
           $p->branch = $req->branch;
@@ -128,6 +137,9 @@ class AuthController extends Controller
 			return view('admin', ['users'=>$user, 'reportedA'=>$reportedA, 'reportedU'=>$reportedU]);
 		  }
 
-		  
+		  public static function getUser($email){
+			  $user = Nuser::where('user_email', $email)->first();
+			  return $user;
+		  }
 
 }

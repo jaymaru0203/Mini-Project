@@ -94,8 +94,12 @@ input[type=radio] {
   font-weight: 500;
 }
 
+body{
+  background-color: #fff;
+}
+
 .fit-image{
-width: 100%;
+width: 95%;
 object-fit: cover;
 height: auto; /* only if you want fixed height */
 }

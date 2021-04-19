@@ -84,57 +84,28 @@
     <div class="right-container">
       
       <!-- ask question container -->
+      @if($user_details->status == "Student")
       <div class="post-container filter" >
         <h1 class="filter-heading">Filter Results</h1>
         <form action="filter" method="GET" class="flex-container">
-        <!--   <div class="filter-options">
-            <input type="radio" name="filterData" id="placements" class="checkbox" value="Placements">
-            <label for="placements">Placements</label>
-          </div>
-          <div class="filter-options">
-            <input type="radio" name="filterData" id="cocurricular" class="checkbox" value="Co-curricular">
-            <label for="cocurricular">Co-Curricular</label>
-          </div>
-          <div class="filter-options">
-            <input type="radio" name="filterData" id="masters" class="checkbox" value="Masters">
-            <label for="masters">Masters</label>
-          </div>
-          <div class="filter-options">
-            <input type="radio" name="filterData" id="hackathons" class="checkbox" value="Hackathons">
-            <label for="hackathons">Hackathons</label>
-          </div>
-          <div class="filter-options">
-            <input type="radio" name="filterData" id="internships" class="checkbox" value="Internships">
-            <label for="internships">Internships</label>
-          </div>
-          <div class="filter-options">
-            <input type="radio" name="filterData" id="others" class="checkbox" value="Others">
-            <label for="others">Others</label>
-          </div>
-          <div class="filter-options">
-            <input type="radio" name="filterData" id="all" class="checkbox" value="all">
-            <label for="all">All</label>
-          </div> -->
          <div class="container-fluid">
           <div class="row">
            <div class="col-lg-3 col-md-3">
            <div class="selectdiv">  
                   <select name="filtercategory" id="filtercategory">
-                    <option value="All">Select Category</option>
+                    <option selected value="0">Select Category</option>
                     <option value="Placements">Placements</option>
                     <option value="Internships">Internships</option>
                     <option value="Hackathons">Hackathons</option>
                     <option value="Co-curricular">Co-curricular</option>
                     <option value="Others">Others</option>
-                    <option value="All">All</option>
-
             </select>
           </div>
           </div>
           <div class="col-lg-3 col-md-3">
           <div class="selectdiv">  
                   <select name="filterbranch" id="filterbranch">
-                    <option value="All">Select Branch</option>
+                    <option selected value="0">Select Branch</option>
                     <option value="COMPS">COMPS</option>
                     <option value="ETRX">ETRX</option>
                     <option value="EXTC">EXTC</option>
@@ -147,7 +118,7 @@
           <div class="col-lg-3 col-md-3">
             <div class="selectdiv">  
                   <select name="filteryear" id="filteryear">
-                    <option value="All">Select Year </option>
+                    <option selected value="0">Select Year </option>
                     <option value="FY">FY</option>
                     <option value="SY">SY</option>
                     <option value="TY">TY</option>
@@ -166,6 +137,52 @@
         </form>
       </div>
       
+      @else
+
+      <div class="post-container filter" >
+        <h1 class="filter-heading">Filter Results</h1>
+        <form action="filterTeacher" method="GET" class="flex-container">
+         <div class="container-fluid">
+          <div class="row">
+           <div class="col-lg-3 col-md-3">
+           <div class="selectdiv">  
+                  <select name="filtercategory" id="filtercategory">
+                    <option selected value="0">Select Category</option>
+                    <option value="Placements">Placements</option>
+                    <option value="Internships">Internships</option>
+                    <option value="Hackathons">Hackathons</option>
+                    <option value="Co-curricular">Co-curricular</option>
+                    <option value="Others">Others</option>
+                </select>
+          </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+          <div class="selectdiv">  
+                  <select name="filterbranch" id="filterbranch">
+                    <option selected value="0">Select Branch</option>
+                    <option value="COMPS">COMPS</option>
+                    <option value="ETRX">ETRX</option>
+                    <option value="EXTC">EXTC</option>
+                    <option value="IT">IT</option>
+                    <option value="MECH">MECH</option>
+                    <option value="All">All</option>
+                  </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <div class="filter-options">
+              <button type="submit" class="filter-btn">Filter</button>
+            </div>
+          </div>
+        </div>
+        </div> 
+        </form>
+      </div>
+
+      @endif
+      
+
+
       <!-- posted questions -->
       @foreach($question as $q)
       <div class="post-container posted mb-3">
@@ -193,7 +210,11 @@
         <div class="user-details">
           <h1><?php echo $r['name']; ?></h1>
             <?php }} ?>
-          <h2>Question For : {{ $q->year }} | {{ $q->branch }}</h2>
+            @if($q->qsFor == "Teacher")
+              <h2>Question For : {{ $q->qsFor }}s | {{ $q->branch }}</h2>
+            @else
+              <h2>Question For : {{ $q->year }} | {{ $q->branch }}</h2>
+            @endif
         </div>
 
         <div class="post-date">
@@ -212,9 +233,9 @@
 
       </div>
 
-
+<!-- ADD TEACHER LOGIC HERE REST ALL IS DONE -->
       <div class="question-container">
-        @if(($user_details->year == $q->year || $q->year == "All") && ($user_details->branch == $q->branch || $q->branch == "All"))
+        @if(($user_details->branch == $q->branch || $q->branch == "All") && (( ($user_details->status == "Student" && $q->qsFor == "Student") && ($user_details->year == $q->year || $q->year == "All")) || ($user_details->status == "Teacher" && $q->qsFor == "Teacher")))
         <form action="postanswer" method="GET">
           <input type="hidden" name="question_id" value="{{$q->question_id}}">
           

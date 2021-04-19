@@ -9,6 +9,10 @@
     text-align: center;
     padding: 3rem 4rem 0;
   }
+  label{
+    font-size: 22px;
+    font-weight: 500;
+  }
 
   #my-form.form-container {
     padding: 1.7rem 27rem 0;
@@ -25,11 +29,6 @@
 
   #my-form select {
     border: none;
-  }
-
-  #my-form .col,
-  #my-form .col-6 {
-    border: 1px solid rgb(207, 207, 207);
   }
 
   #my-form .col {
@@ -51,6 +50,12 @@
 
   #my-form .my-btn:hover {
     background-color: #b33229;
+  }
+
+  .error{
+    color: red;
+    font-size: 12px;
+    font-weight: 300;
   }
 
   /* Responsive Styling */
@@ -168,25 +173,31 @@
     <div class="mb-3">
       <label for="question" class="form-label">Question</label>
       <textarea class="form-control" name="question" id="question" rows="5" placeholder="Write here..."></textarea>
+      <span class="error">@error('question'){{$message}}@enderror</span>
     </div>
 
     <div class="mb-3">
       <label for="exampleFormControlTextarea1" class="form-label">Who should answer it?</label>
-      <div class="container my-2">
+
+      <div class="form-check container my-3">
+        <input class="form-check-input" type="radio" name="qsFor" value="Student" id="qsFor1" onchange="show(this)">
+        <label class="form-check-label mr-5" for="qsFor1">
+          Student
+        </label>
+
+        <input class="form-check-input" type="radio" name="qsFor" value="Teacher" id="qsFor2" onchange="hide(this)">
+        <label class="form-check-label" for="qsFor2">
+          Teacher
+        </label><br>
+        <span class="error">@error('qsFor'){{$message}}@enderror</span>
+      </div>
+
+      <div class="container my-2" id="yearBranch" >
         <div class="row">
-          <div class="col-6">
-            <select id="year" name="year" class="form-select py-2" required>
-              <option selected value="0">Select year of study</option>
-              <option value="FY">FY</option>
-              <option value="SY">SY</option>
-              <option value="TY">TY</option>
-              <option value="LY">LY</option>
-              <option value="All">All</option>
-            </select>
-          </div>
-          <div class="col-6">
-            <select name="branch" class="form-select py-2" required>
-              <option selected value="0">Select branch</option>
+
+          <div class="col-6" style="border: 1px solid rgb(207, 207, 207);">
+            <select name="branch" id="branch" class="form-select py-2" required>
+              <option selected value="All">Select branch</option>
               <option value="IT">IT</option>
               <option value="CS">CS</option>
               <option value="MECH">MECH</option>
@@ -194,6 +205,19 @@
               <option value="ETRX">ETRX</option>
               <option value="All">All</option>
             </select>
+            <span class="error">@error('branch'){{$message}}@enderror</span>
+          </div>
+
+          <div class="col-6">
+            <select id="year" name="year" class="form-select py-2" style="visibility: hidden; border: 1px solid rgb(207, 207, 207);" required>
+              <option selected value="All">Select year of study</option>
+              <option value="FY">FY</option>
+              <option value="SY">SY</option>
+              <option value="TY">TY</option>
+              <option value="LY">LY</option>
+              <option value="All">All</option>
+            </select>
+            <span class="error">@error('year'){{$message}}@enderror</span>
           </div>
 
         </div>
@@ -212,15 +236,30 @@
           <option value="Internships">Internships</option>
           <option value="Others">Others</option>
         </select>
-
       </div>
-    </div>
+        <span class="error">@error('type'){{$message}}@enderror</span>
+    </div><br>
     <div class="px-5 pt-3 mx-5 my-btn-div">
       <button type="submit" class="btn my-btn btn-lg btn-block">
         Add Question
       </button>
     </div>
   </form>
-</div>
+</div><br><br>
 
+<script>
+
+  function show(x){
+    if(x.checked){
+      document.getElementById("year").style.visibility = "visible";
+
+    }
+  }
+  function hide(x){
+    if(x.checked){
+      document.getElementById("year").style.visibility = "hidden";
+    }
+  }
+
+</script>
 @endsection

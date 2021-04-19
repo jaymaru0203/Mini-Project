@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Vote;
+use App\Models\Nuser;
 use Illuminate\Support\Facades\DB;
 
 class AnswerController extends Controller
@@ -33,9 +34,10 @@ class AnswerController extends Controller
         $q = Question::where("question_id",$question_id)->first();
 
         $email = session()->get('user');
+        $u = Nuser::all();
         $v = Vote::where('user_email', $email);
         
-        return view("replies",["question"=>$q,"answers"=>$a, "votes"=>$v, "flag"=>0]);
+        return view("replies",["question"=>$q,"answers"=>$a, "votes"=>$v, "flag"=>0, "user"=>$u]);
         
     }
 

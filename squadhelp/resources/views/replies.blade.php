@@ -51,6 +51,17 @@
 <div class="post-container posted">
 
 <div class="userdetails-container">
+
+<div class="user-details">
+
+      <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($question->user_email)->image}}" alt="">
+        
+      <h1>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->name }}</h1>
+        
+      {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->user_email }}
+         
+        <h6>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->status }} of {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->year }}</h6>
+        </div>
   
   <div class="post-date">
     <p>{{$question->created_at}}</p>
@@ -76,7 +87,14 @@
 
       <div class="userdetails-container">
       <div class="user-details">
-          <h2 style="font-size:15px;font-weight: 700;margin-left:25px">User: {{ $a->answer_by }}</h2>
+
+      <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($a->answer_by)->image}}" alt="">
+        
+      <h1>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->name }}</h1>
+        
+      {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->user_email }}
+         
+        <h6>{{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->status }} of {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($a->answer_by)->year }}</h6>
         </div>
 
         <div class="post-date">

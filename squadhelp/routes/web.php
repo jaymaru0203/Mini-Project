@@ -28,6 +28,7 @@ use App\Http\Controllers\ReportController;
 Route::get("/",[QuestionController::class,'fetchQuestions'])->middleware('usersession');
 
 Route::get("/filter",[QuestionController::class,'filterQuestions'])->middleware('usersession');
+Route::get("/filterTeacher",[QuestionController::class,'filterQuestionsTeacher'])->middleware('usersession');
 
 Route::get("/postanswer",[AnswerController::class,'repliesForQuestions'])->middleware('usersession');
 
