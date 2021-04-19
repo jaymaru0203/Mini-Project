@@ -647,7 +647,6 @@
 
 
 <body>
-
   <!-- navbar -->
    <div id="pre-loader" class="loader-container">
             <div id="loader">
