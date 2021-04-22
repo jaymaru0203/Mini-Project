@@ -58,12 +58,18 @@ Route::post("delAns/{answer_id}",[ReportController::class,'delAns']);
 
 Route::post("banUser/{user_id}",[ReportController::class,'banUser']);
 
+Route::get("warnUser/{user_id}",[ReportController::class,'warnUser']);
+
 Route::get('/signup', function () {
 	if(session()->has('user')){
 		return redirect('/');
 
 	}else{
     return view('signup');}
+});
+
+Route::get('/otp', function () {
+    return view('otp');
 });
 
 Route::get('/login', function () {
@@ -87,6 +93,7 @@ Route::get("/logout",[AuthController::class,'logout'])->middleware('usersession'
 
 Route::post('loginuser',[Authcontroller::class,'loginuser']);
 Route::post('signupuser',[Authcontroller::class,'signupuser']);
+Route::post('submitOTP',[Authcontroller::class,'verifyOTP']);
 
 Route::get('/ask', function () {
     return view('ask');
@@ -97,5 +104,7 @@ Route::post('editprofile', [ProfileController::class, "editprofile"]);
 Route::post('editimage', [ProfileController::class, "editimage"]);
 
 Route::post('question', [QuestionController::class, "postQuestion"]);
+
+
 
 

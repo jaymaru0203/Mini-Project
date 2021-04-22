@@ -114,8 +114,15 @@
             </div>
     </div>
 
+
+
     <div class="right-container">
-      
+    @if ($message = Session::get('success'))
+      <div class="alert alert-success alert-block" style="width: 100%;">
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+              <strong>{{ $message }}</strong>
+      </div>
+    @endif
       <!-- ask question container -->
       @if($user_details->status == "Student")
       <div class="post-container filter" >

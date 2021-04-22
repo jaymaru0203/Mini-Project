@@ -669,7 +669,7 @@
                         Edit Image
                     </button>
                 </div>
-            </form>
+            </form><br><br><br>
 
         </div>
 
@@ -790,7 +790,7 @@
       <div class="row question-info">
         
         <div class="col-12 question">
-          <p style="text-transform:uppercase;">{{$a->answer}}</p>
+          <p>{{$a->answer}}</p>
         </div>
 
       </div>
@@ -799,13 +799,13 @@
           <div style="float: left;padding-right:10px;font-size: 20px; "><i class="fas fa-arrow-up"></i> {{$a->upvote_count}}</div>
             <div style="float: left;padding-right:10px;font-size: 20px;"><i class="fas fa-arrow-down"></i> {{$a->downvote_count}}</div>
             </div>
-            <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+            <!-- <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button> -->
           </div>
         @else
           <div style="float: left;padding-right:10px;font-size: 20px; "><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</div>
             <div style="float: left;padding-right:10px;font-size: 20px;"><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</div>
             </div>
-            <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+            <!-- <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button> -->
           </div>
         @endif
 </div>

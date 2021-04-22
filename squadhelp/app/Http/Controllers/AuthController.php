@@ -14,6 +14,17 @@ class AuthController extends Controller
 {
     function signupuser(Request $req)
 	{
+		if(session()->has('otp')){
+			session()->forget('otp');	
+		}
+		if(session()->has('user')){
+			$email = session()->get('user');
+			$delUser = Nuser::where('user_email', $email)->delete();
+			if($delUser){
+				$req->session()->flash('register_status','Please Sign Up again!');
+				return redirect('signup');
+			}
+		}
 
 		$req->validate([
 			'name'=>'required|min:3|string',
@@ -51,26 +62,49 @@ class AuthController extends Controller
           $p->password = Hash::make($req->password);
           $p->user_email = $req->user_email;
           $p->save();
-          $req->session()->flash('register_status','User has been registered successfully');
-          $req->session()->put('user',$req->user_email);
-          $req->session()->put('user_img',"null.jpg");
 
-           $data = ['name'=>$req->name,
-           'year'=>$req->year,'branch'=>$req->branch]; 
+		 $otp = rand(1000, 9999);
+		//  $response = new \Illuminate\Http\Response('OTP SET');
+
+		// $response->withCookie(cookie('otp', $otp, 5));
+
+			$req->session()->put('otp', $otp);
+
+		  $data = ['name'=>$req->name, 'year'=>$req->year,'branch'=>$req->branch, "otp" => $otp]; 
 
            Mail::send('mail',$data,function($messages) use ($req){
                  $messages->to($req->user_email);
                  $messages->subject('Welcome to SquadHelp');
            });
-
-          return redirect('/');
+		   $req->session()->put('user',$req->user_email);
+		   $req->session()->put('user_img',"null.jpg");
+			return redirect('otp');
+		  
            }
            else{
            	$req->session()->flash('register_status','This Email already exists.');
               return redirect('signup');
            }
+	}
 
-
+	public function verifyOTP(Request $req){
+		$email = $req->user_email;
+		$formOTP = $req->otp;
+		$sessionOTP = $req->session()->get('otp');
+		if($formOTP == $sessionOTP){
+			session()->forget('otp');
+			return redirect('/')->with('success', "User Registered Successfully");
+		}
+		else{
+			session()->forget('otp');
+			session()->forget('user');
+			session()->forget('user_img');
+			$delUser = Nuser::where('user_email', $email)->delete();
+			if($delUser){
+				$req->session()->flash('register_status','Incorrect OTP Entered!');
+				return redirect('signup');
+			}
+		}
 	}
 
 
