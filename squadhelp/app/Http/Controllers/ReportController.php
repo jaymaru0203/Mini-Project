@@ -8,6 +8,7 @@ use App\Models\ReportAnswer;
 use App\Models\ReportUser;
 use App\Models\Nuser;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class ReportController extends Controller
 {
@@ -47,14 +48,28 @@ class ReportController extends Controller
     public function delAns($answer_id){
         $delAns = Answer::where('answer_id', $answer_id)->delete();
         if($delAns){
-            return redirect('/adminPage');
+            return redirect('/adminPage')->with('success', 'Answer Deleted Successfully!');
         }
     }
 
     public function banUser($user_id){
-        $banUser = Nuser::where('id', $user_id)->delete();
-        if($banUser){
-            return redirect('/adminPage');
-        }
+        $user = Nuser::where('id', $user_id)->first();
+        $user->password = "ReportedUser";
+        $user->save();
+        return redirect('/adminPage')->with('success', 'User Banned Successfully!');
+    }
+
+    public function warnUser($user_id){
+        $user = Nuser::where('id', $user_id)->first();
+        $email = $user->user_email;
+
+        $data = ['name'=>$user->name]; 
+
+           Mail::send('warningMail',$data,function($messages) use ($user){
+                 $messages->to($user->user_email);
+                 $messages->subject('Warning from SquadHelp');
+           });
+
+        return redirect('/adminPage')->with('success', 'Warning Email Sent to User Successfully!');
     }
 }

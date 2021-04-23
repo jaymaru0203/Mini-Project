@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+          <!-- AOS -->
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         * {
@@ -24,7 +29,7 @@
         .topnav{
             height: 6vh;
             width: 100vw;
-            background-color: #fff;
+            background-color: #222;
             position: fixed;
             box-shadow: 0px 0.2px 5px #444;
         }
@@ -37,11 +42,12 @@
             margin: 2vh 3vw;
             font-size: 2vh;
             font-weight: 600;
+            color: #fff;
         }
         /* Style the tab */
         .tab {
           float: left;
-          background-color: #fff;
+          background-color: #222;
           width: 20%;
           min-width: 160px;
           height: 94vh;
@@ -54,6 +60,9 @@
             margin: 0.5vh auto 2vh auto;
             color: #0f046c;
         }
+        .tab h2{
+          color: #eee;
+        }
         hr{
             width: 75%;
             border: 0.5px solid #888;
@@ -64,7 +73,7 @@
         .tab button {
           display: block;
           background-color: inherit;
-          color: #333;
+          color: #eee;
           padding: 12px 16px;
           width: 100%;
           border: none;
@@ -78,13 +87,13 @@
         
         /* Change background color of buttons on hover */
         .tab button:hover {
-          background-color: #e75d570d;
+          background-color: #666;
         }
         
         /* Create an active/current "tab button" class */
         .tab button.active {
-          background-color: #e75d570d;
-          color: #e75d57;
+          background-color: #666;
+          color: #fff;
         }
         i{
             cursor: pointer;
@@ -388,7 +397,7 @@
             animation: example 0.3s ease-out;
         }
 
-        .close, .closeEdit, .closeDelete, .closeSal {
+        .close, .closeEdit, .closeDeleteModal, .closeSal {
             color: #aaa;
             float: right;
             font-size: 28px;
@@ -396,7 +405,7 @@
             margin-right: 8px;
         }
 
-        .close:hover, .close:focus, .closeEdit:hover, .closeEdit:focus, .closeDelete:hover, .closeDelete:focus, .closeSal:hover, .closeSal:focus {
+        .close:hover, .close:focus, .closeEdit:hover, .closeEdit:focus, .closeDeleteModal:hover, .closeDeleteModal:focus, .closeSal:hover, .closeSal:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
@@ -415,7 +424,7 @@
 </head>
 <body>
 <div class="topnav">
-  <img src="#" id="logo">LOGO
+<img src="{{ asset('images/logo.png') }}" style="height: 100%;">
      <div class="profile" onclick="sidebar()"><i class="fa fa-bars" aria-hidden="true"></i></div>
      <div class="profile" >{{ session()->get('admin') }}</div>
 </div>
@@ -430,6 +439,12 @@
 
 <div id="users" class="tabcontent">
 
+  @if ($message = Session::get('success'))
+      <div class="alert alert-success alert-block" style="width: 70%; margin: 5px auto;">
+          <button type="button" class="close" data-dismiss="alert">×</button>	
+              <strong>{{ $message }}</strong>
+      </div>
+  @endif
     <div class="showAll">
     <h2>All Users</h2>
     <table>
@@ -487,7 +502,7 @@
             <div id="{{ $ans->answer_id }}" class="modal">
             <div class="modal-content">
 
-                <span class="closeDelete" onclick="document.getElementById('{{ $ans->answer_id }}').style.display='none'">&times;</span>
+                <span class="closeDeleteModal" onclick="document.getElementById('{{ $ans->answer_id }}').style.display='none'">&times;</span>
 
                 <form action="/delAns/{{ $ans->answer_id }}" method="POST" style="margin-bottom: 10px;margin-top: -30px; background:none;">
                 @csrf
@@ -515,7 +530,7 @@
                 <th>User ID</th>
                 <th>Name</th>
                 <th>Email ID</th>
-                <th>Ban User</th>
+                <th>Action</th>
             </tr>
 
             @foreach($reportedU as $us)
@@ -524,7 +539,10 @@
                     <td>{{ $us->user_id }}</td>
                     <td>{{ $us->name }}</td>
                     <td>{{ $us->email }}</td>
-                    <td><button style="padding: 5px;" class="edBtn" onclick="document.getElementById('{{ $us->user_id }}').style.display='block'">Delete</button></td>
+                    <td>
+                      <a href="/warnUser/{{ $us->user_id }}"><button style="padding: 5px;" class="edBtn">Warning</button></a> 
+                      <button style="padding: 5px;" class="edBtn" onclick="document.getElementById('{{ $us->user_id }}').style.display='block'">Ban User</button>
+                    </td>
                 </tr>
 
 
@@ -532,7 +550,7 @@
                 <div id="{{ $us->user_id }}" class="modal">
                     <div class="modal-content">
 
-                        <span class="closeDelete" onclick="document.getElementById('{{ $us->user_id }}').style.display='none'">&times;</span>
+                        <span class="closeDeleteModal" onclick="document.getElementById('{{ $us->user_id }}').style.display='none'">&times;</span>
 
                         <form action="/banUser/{{ $us->user_id }}" method="POST" style="margin-bottom: 10px;margin-top: -30px; background:none;">
                         @csrf
@@ -551,6 +569,12 @@
 
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
    function sidebar(){

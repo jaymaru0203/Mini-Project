@@ -248,6 +248,7 @@ button:focus {outline:0 !important;}
                <img src="{{ asset('images/loader1.gif') }}">
             </div>
   </div>
+
   <div class="wrapper mt-4">
 
     <div class="container-fluid p-0">
@@ -260,7 +261,10 @@ button:focus {outline:0 !important;}
               <div class="logdet">Register</div>
               @if(Session::get('register_status'))
          
-                  <h6 style="text-align: center">{{ Session::get('register_status') }}</h6>
+              <div class="alert alert-danger alert-block my-3" style="width: 100%; zoom: 0.8;">
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+                      <strong>{{ Session::get('register_status') }}</strong>
+              </div>
 
               @endif
               <div class="form-group">

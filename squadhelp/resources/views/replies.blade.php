@@ -76,7 +76,7 @@
 <!-- question -->
 <div class="row question-info">
   <div class="col-11 question">
-    <p style="text-transform:uppercase;">{{$question->question_content}}</p>
+    <h4>{{$question->question_content}}</h4>
   </div>
 
 </div>
@@ -114,7 +114,7 @@
       <div class="row question-info">
         
         <div class="col-12 question">
-          <p style="text-transform:uppercase;">{{$a->answer}}</p>
+          <h5>{{$a->answer}}</h5>
         </div>
 
       </div>
