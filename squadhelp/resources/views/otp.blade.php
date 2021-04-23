@@ -30,6 +30,7 @@
                 @csrf
                 <input type="number" name="otp" id="otp" min="1000" max="9999" maxlength="4" step="1" style="width: 30%; font-size: 40px; padding: 5px; text-align: center;"><br><br>
                 <input type="email" name="user_email" id="user_email" value="{{ Session()->get('user') }}" hidden><br>
+                <button class="btn btn-danger btn-lg" type="submit">Back</button>
                 <button class="btn btn-success btn-lg" type="submit">Submit</button>
             </form>
         </div>

@@ -63,8 +63,12 @@
       <h1>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->name }}</h1>
         
       <h2>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->user_email }}</h2>
-         
-        <h2>{{ \App\Http\Controllers\AuthController::getUser($question->user_email)->status }} of {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($question->user_email)->year }}</h2>
+        
+           @if($question->qsFor == "Teacher")
+              <h2>Question For : {{ $question->qsFor }}s | {{ $question->branch }}</h2>
+            @else
+              <h2>Question For : {{ $question->year }} | {{ $question->branch }}</h2>
+            @endif
         </div>
   
   <div class="post-date">

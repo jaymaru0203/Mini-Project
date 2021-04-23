@@ -229,32 +229,23 @@
     
       <div class="userdetails-container">
         <div class="user-image">
+         <img src="{{asset('storage/uploads')}}/{{\App\Http\Controllers\AuthController::getUser($q->user_email)->image}}" alt="">
+       </div>
 
+     <div class="user-details">
 
-         <?php 
-            $conn = new mysqli('localhost', 'root' , '' , 'laravel');
-            $email = session()->get('user');
-            $qemail = $q->user_email;
+     
+      <h1>{{ \App\Http\Controllers\AuthController::getUser($q->user_email)->name }}</h1>
+        
+      <h2>{{ \App\Http\Controllers\AuthController::getUser($q->user_email)->user_email }}</h2>
 
-            // $sql = "SELECT DISTINCT sender FROM chat_messages WHERE sender!='$email' AND chatRoomID='$id1'";
-            $sql = "SELECT * FROM nusers WHERE user_email='$qemail'";
-            $res = $conn->query($sql);
-            if($res->num_rows > 0){
-            while($r=$res->fetch_assoc()){ ?>
-
-           <img src="{{asset('storage/uploads')}}/<?php echo $r['image']; ?>" alt="">
-
-         
-          </div>
-
-        <div class="user-details">
-          <h1><?php echo $r['name']; ?></h1>
-            <?php }} ?>
             @if($q->qsFor == "Teacher")
               <h2>Question For : {{ $q->qsFor }}s | {{ $q->branch }}</h2>
             @else
               <h2>Question For : {{ $q->year }} | {{ $q->branch }}</h2>
             @endif
+         
+        <!-- <h2>{{ \App\Http\Controllers\AuthController::getUser($q->user_email)->status }} of {{ \App\Http\Controllers\AuthController::getUser($q->user_email)->branch }} | {{ \App\Http\Controllers\AuthController::getUser($q->user_email)->year }}</h2> -->
         </div>
 
         <div class="post-date">

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckUserSession
+class CheckOtp
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class CheckUserSession
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->session()->exists('user')) {
+        if ($request->session()->exists('otp')) {
             // user value cannot be found in session
-            return redirect('login');
+            return redirect('otp');
         }
         return $next($request);
     }

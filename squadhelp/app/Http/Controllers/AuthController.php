@@ -14,18 +14,6 @@ class AuthController extends Controller
 {
     function signupuser(Request $req)
 	{
-		if(session()->has('otp')){
-			session()->forget('otp');	
-		}
-		if(session()->has('user')){
-			$email = session()->get('user');
-			$delUser = Nuser::where('user_email', $email)->delete();
-			if($delUser){
-				$req->session()->flash('register_status','Please Sign Up again!');
-				return redirect('signup');
-			}
-		}
-
 		$req->validate([
 			'name'=>'required|min:3|string',
 			
