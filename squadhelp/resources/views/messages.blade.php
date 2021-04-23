@@ -27,6 +27,7 @@
           transition: 0.3s;
           box-shadow: 1px 0px 3px 0px #888;
         }
+        
         a{
             all: unset;
         }
@@ -158,7 +159,7 @@
             padding: 0.5%;
             box-shadow: 0px 1px 3px 0px #888;
             position: fixed !important;
-            z-index: 999999;
+            z-index: 93;
             align-items: center;
         }
 
