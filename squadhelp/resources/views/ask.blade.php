@@ -4,8 +4,7 @@
 
 @section('header')
 <style type="text/css">
-
-   .loader-container {
+  .loader-container {
     background: #fff;
     bottom: 0;
     left: 0;
@@ -13,31 +12,34 @@
     right: 0;
     top: 0;
     z-index: 9999;
-    }
+  }
 
 
-    #loader {
-        display: block;
-        position: absolute;
-        font-size: 0;
-        left: 50%;
-        top: 50%;
-        width: 100px;
-        height: 100px;
-        transform: translateY(-50%) translateX(-50%);
-      }
+  #loader {
+    display: block;
+    position: absolute;
+    font-size: 0;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translateY(-50%) translateX(-50%);
+  }
 
-    #loader img {
-        display: block;
-        width: 100%;
-        vertical-align: middle;}
+  #loader img {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+  }
+
   /* Ask a question */
   .heading {
     text-align: center;
     padding: 3rem 4rem 0;
   }
-  label{
-    font-size: 22px;
+
+  label {
+    font-size: 18px;
     font-weight: 500;
   }
 
@@ -79,7 +81,7 @@
     background-color: #b33229;
   }
 
-  .error{
+  .error {
     color: red;
     font-size: 12px;
     font-weight: 300;
@@ -120,12 +122,15 @@
     #my-form.form-container {
       padding: 1.7rem 2rem 0;
     }
+
     #my-form .my-btn {
       font-size: 1.2em !important;
     }
+
     .heading h1 {
       font-size: 1.8em !important;
     }
+
     .heading {
       padding-top: 1.3rem;
     }
@@ -135,21 +140,27 @@
     #my-form.form-container {
       padding: 1.5rem 2rem 0;
     }
+
     #my-form .my-btn {
       font-size: 1em !important;
     }
+
     #my-form .my-btn-div {
       padding: 10px 15px !important;
     }
+
     #my-form option {
       font-size: 10px !important;
     }
+
     #my-form select.form-select {
       font-size: 15px;
     }
+
     .heading h1 {
       font-size: 1.7em !important;
     }
+
     .heading {
       padding-top: 1.7rem;
     }
@@ -159,6 +170,7 @@
     .heading h1 {
       font-size: 1.5em !important;
     }
+
     .heading {
       padding-top: 1em;
     }
@@ -166,12 +178,15 @@
     #my-form.form-container {
       padding-top: 1em;
     }
+
     #my-form .my-btn-div {
       padding: 10px 0 15px !important;
     }
+
     #my-form .my-btn {
       font-size: 15px !important;
     }
+
     #my-form select.form-select {
       font-size: 10px;
     }
@@ -181,6 +196,7 @@
     .heading {
       padding: 1em 0 0 !important;
     }
+
     #my-form .my-btn-div {
       margin: 0 10px !important;
     }
@@ -190,10 +206,10 @@
 
 @section('content')
 <div id="pre-loader" class="loader-container">
-            <div id="loader">
-               <img src="{{ asset('images/loader1.gif') }}">
-            </div>
-    </div>
+  <div id="loader">
+    <img src="{{ asset('images/loader1.gif') }}">
+  </div>
+</div>
 <!-- Form -->
 <div class="mt-5 pt-5">
   <div class="heading">
@@ -224,7 +240,7 @@
         <span class="error">@error('qsFor'){{$message}}@enderror</span>
       </div>
 
-      <div class="container my-2" id="yearBranch" >
+      <div class="container my-2" id="yearBranch">
         <div class="row">
 
           <div class="col-6" style="border: 1px solid rgb(207, 207, 207);">
@@ -269,7 +285,7 @@
           <option value="Others">Others</option>
         </select>
       </div>
-        <span class="error">@error('type'){{$message}}@enderror</span>
+      <span class="error">@error('type'){{$message}}@enderror</span>
     </div><br>
     <div class="px-5 pt-3 mx-5 my-btn-div">
       <button type="submit" class="btn my-btn btn-lg btn-block">
@@ -280,31 +296,29 @@
 </div><br><br>
 
 <script>
-      jQuery(window).on('load', function(){ 
-         jQuery('#pre-loader').delay(1200).fadeOut(); 
-         });
+  jQuery(window).on('load', function() {
+    jQuery('#pre-loader').delay(1200).fadeOut();
+  });
 
-  function show(x){
-    if(x.checked){
+  function show(x) {
+    if (x.checked) {
       document.getElementById("year").style.visibility = "visible";
 
     }
   }
-  function hide(x){
-    if(x.checked){
+
+  function hide(x) {
+    if (x.checked) {
       document.getElementById("year").style.visibility = "hidden";
     }
   }
-
-
-
 </script>
 @endsection
 
 @section('script')
 <script type="text/javascript">
-      jQuery(window).on('load', function(){ 
-         jQuery('#pre-loader').delay(1200).fadeOut(); 
-         });
+  jQuery(window).on('load', function() {
+    jQuery('#pre-loader').delay(1200).fadeOut();
+  });
 </script>
 @endsection

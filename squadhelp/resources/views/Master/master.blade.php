@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-      <!-- AOS -->
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
+
 
   <title>@yield('title')</title>
 
@@ -30,7 +30,7 @@
       background: #f2f2f2;
     }
 
-/*    .loader-container {
+    /*    .loader-container {
     background: #fff;
     bottom: 0;
     left: 0;
@@ -128,7 +128,7 @@
       padding: 0 15px;
       color: #fff;
       font-size: 17px;
-      background:#e5564d;
+      background: #e5564d;
       border: none;
       border-radius: 2px;
       cursor: pointer;
@@ -138,17 +138,17 @@
       background: #e63600;
     }
 
-    .profilePicture{
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin: 0;
-            background-color: pink;
-            vertical-align: middle;
-        }
+    .profilePicture {
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      background-color: pink;
+      vertical-align: middle;
+    }
 
-    .profile-a{
+    .profile-a {
       padding: 0 20px;
     }
 
@@ -337,7 +337,7 @@
         margin: 0 20px;
       }
 
-      nav .cancel-icon{
+      nav .cancel-icon {
         position: absolute;
         left: 0;
       }
@@ -355,7 +355,8 @@
         margin: 0 10px;
         font-size: 16px;
       }
-      nav .cancel-icon{
+
+      nav .cancel-icon {
         position: absolute;
         left: 0;
       }
@@ -434,10 +435,10 @@
     .right-container {
       width: 100%;
       margin-top: 6rem;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
 
@@ -484,11 +485,11 @@
       position: relative;
     }
 
-.post-date {
-    position: absolute;
-    right: 1%;
-    top: 2%;
-}
+    .post-date {
+      position: absolute;
+      right: 1%;
+      top: 2%;
+    }
 
     .post-date p {
       color: red;
@@ -511,7 +512,7 @@
 
     .votes h4 {
       font-size: 15px;
-      margin-top:10px;
+      margin-top: 10px;
     }
 
     .votes i {
@@ -534,33 +535,33 @@
     @media screen and (max-width: 650px) {
 
       .filter-options label {
-    font-size: 11px;
-    border-radius: 5px;
-    font-weight: 600;
-    background-color: #bfbfbf;
-    padding: 8px 10px;
-    color: white;
-    cursor: pointer;
-    transition: .2s ease-out;
-    }
+        font-size: 11px;
+        border-radius: 5px;
+        font-weight: 600;
+        background-color: #bfbfbf;
+        padding: 8px 10px;
+        color: white;
+        cursor: pointer;
+        transition: .2s ease-out;
+      }
 
-    .post-container {
-    background-color: #fff;
-    border-radius: 5px;
-    width: 90%;
-    padding: 1rem 1rem;
-    }
+      .post-container {
+        background-color: #fff;
+        border-radius: 5px;
+        width: 90%;
+        padding: 1rem 1rem;
+      }
 
       .post-date {
         font-size: .8rem;
       }
 
-          .post-date p {
-            color: red;
-            margin-top: 53px;
-            font-weight: 500;
-            font-size: 10px;
-          }
+      .post-date p {
+        color: red;
+        margin-top: 53px;
+        font-weight: 500;
+        font-size: 10px;
+      }
 
       .post-container h1 {
         font-size: 1.2rem;
@@ -582,7 +583,8 @@
       }
 
       .post-container {
-        width: 90%;      }
+        width: 90%;
+      }
 
       .question p {
         font-size: .8rem;
@@ -594,71 +596,71 @@
 
     }
 
-    .filter-options{
-        margin: 0 10px;
-      }
+    .filter-options {
+      margin: 0 10px;
+    }
 
-      .filter-heading{
-        font-size:30px;
-        color:black;
-        font-weight:bold;
-        text-transform:uppercase;
-        margin:40px;
-      }
+    .filter-heading {
+      font-size: 30px;
+      color: black;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 40px;
+    }
 
-      .checkbox{
-        display:none;
-      }
+    .checkbox {
+      display: none;
+    }
 
-      .checkbox:checked ~ label{
-        background-color: #cc3227;
-      }
+    .checkbox:checked~label {
+      background-color: #cc3227;
+    }
 
     .filter-options label {
-    font-size: 15px;
-    border-radius: 8px;
-    font-weight: 600;
-    background-color: #bfbfbf;
-    padding: 10px 10px;
-    color: white;
-    cursor: pointer;
-    transition: .2s ease-out;
-}
+      font-size: 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      background-color: #bfbfbf;
+      padding: 10px 10px;
+      color: white;
+      cursor: pointer;
+      transition: .2s ease-out;
+    }
 
-      .filter-options label:hover{
-        transform:scale(.95);
-      }
+    .filter-options label:hover {
+      transform: scale(.95);
+    }
 
-      .post-container form{
-          display:flex;
-          position:relative;
-        }
-      
-      .filter-btn{
-        border:none;
-        outline: none;
-        background-color:none;
-        padding:10px 10px;
-        background-color:#33adff;
-        border-radius:10px;
-        color:white;
-        font-size:15px;
-        font-weight:600;
-        text-transform:uppercase;
-        transition:.2s ease-out;
-      }
+    .post-container form {
+      display: flex;
+      position: relative;
+    }
 
-      .filter-btn:hover{
-        transform:scale(.95);
-      }
+    .filter-btn {
+      border: none;
+      outline: none;
+      background-color: none;
+      padding: 10px 10px;
+      background-color: #33adff;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: .2s ease-out;
+    }
+
+    .filter-btn:hover {
+      transform: scale(.95);
+    }
   </style>
-@yield('header') 
+  @yield('header')
 </head>
 
 
 <body>
   <!-- navbar -->
-<!--    <div id="pre-loader" class="loader-container">
+  <!--    <div id="pre-loader" class="loader-container">
             <div id="loader">
                <img src="{{ asset('images/loader1.gif') }}">
             </div>
@@ -679,37 +681,37 @@
           <!-- <span class="badge">3</span> -->
         </a>
       </li>
-      @if(Session::has('user'))  
+      @if(Session::has('user'))
       <li class="ml-auto"><a href="/logout">Log Out</a></li>
       @else
 
       <li class="ml-auto"><a href="/login">Login</a></li>
-      <li ><a href="/signup">Signup</a></li>
-    
+      <li><a href="/signup">Signup</a></li>
+
       @endif
 
     </div>
-        <div class="cancel-icon">
+    <div class="cancel-icon">
       <span class="fas fa-times"></span>
     </div>
-  
 
-  <!--   <form action="#">
+
+    <!--   <form action="#">
       <input type="search" class="search-data" placeholder="Search" required>
       <button type="submit" class="fas fa-search"></button>
       
     </form> -->
-    @if(Session::has('user'))  
-    <a class="profile-a" href="/profile"><img src="{{asset('storage/uploads/'.session()->get('user_img'))}}" class="rounded-circle profilePicture" ></a>
+    @if(Session::has('user'))
+    <a class="profile-a" href="/profile"><img src="{{asset('storage/uploads/'.session()->get('user_img'))}}" class="rounded-circle profilePicture"></a>
     @else
-      <div class="search-icon">
+    <div class="search-icon">
       <span class="fas fa-search" style="color: black;"></span>
     </div>
     @endif
   </nav>
 
   <!-- contents -->
-    @yield('content')
+  @yield('content')
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -719,7 +721,6 @@
   @yield('script')
 
   <script>
-
     const menuBtn = document.querySelector(".menu-icon span");
     const searchBtn = document.querySelector(".search-icon");
     const cancelBtn = document.querySelector(".cancel-icon");
