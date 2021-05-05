@@ -129,7 +129,9 @@
   <div style="float: left;padding-right:10px;font-size: 20px; "><a href="/upvote/{{$a->answer_id}}"><i class="fas fa-arrow-up"></i></a> {{$a->upvote_count}}</div>
   <div style="float: left;padding-right:10px;font-size: 20px;"><a href="/downvote/{{$a->answer_id}}"><i class="fas fa-arrow-down"></i></a> {{$a->downvote_count}}</div>
 </div>
-<button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+@if(\App\Http\Controllers\AuthController::getUser($a->answer_by)->status != "Teacher")
+  <button class="report"><a href="/reportA/{{$a->answer_id}}">Report</a></button>
+@endif
 </div>
 @endif
 

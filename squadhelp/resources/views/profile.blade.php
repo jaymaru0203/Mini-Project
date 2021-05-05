@@ -731,7 +731,6 @@
 
                     </div>
 
-                    <!-- ADD TEACHER LOGIC HERE REST ALL IS DONE -->
                     <div class="question-container">
                         @if(($user->branch == $q->branch || $q->branch == "All") && (( ($user->status == "Student" && $q->qsFor == "Student") && ($user->year == $q->year || $q->year == "All")) || ($user->status == "Teacher" && $q->qsFor == "Teacher")))
                         <form action="postanswer" method="GET">

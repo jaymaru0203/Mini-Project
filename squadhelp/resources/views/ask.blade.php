@@ -247,7 +247,7 @@
             <select name="branch" id="branch" class="form-select py-2" required>
               <option selected value="All">Select branch</option>
               <option value="IT">IT</option>
-              <option value="CS">CS</option>
+              <option value="COMPS">COMPS</option>
               <option value="MECH">MECH</option>
               <option value="EXTC">EXTC</option>
               <option value="ETRX">ETRX</option>

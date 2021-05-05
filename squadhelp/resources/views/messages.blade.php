@@ -318,7 +318,7 @@
                    </h2>
                    <img src="{{asset('storage/uploads')}}/<?php echo $re['image']; ?>" id="profilePicture"> 
                    <h2 class="username"><?php echo $re['name'] ?></h2>
-                   <?php if($re['status'] != "Teacher"){ ?>
+                   <?php if($re['status'] == "Student"){ ?>
                     <button class="report"><a href="/reportU/<?php echo $re['id']; ?>" style="all: unset;">Report</a></button>
                    <?php } ?>
                 

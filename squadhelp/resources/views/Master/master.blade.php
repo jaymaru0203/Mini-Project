@@ -181,10 +181,10 @@
     .notification .badge {
       position: absolute;
       top: -10px;
-      left: 50px;
-      padding: 3px 6px;
+      left: 45px;
+      padding: 4px 8px;
       border-radius: 50%;
-      background-color: red;
+      background-color: green;
       color: white;
       font-size: 13px;
     }
@@ -195,10 +195,8 @@
       }
 
       .notification .badge {
-        top: -20px;
-        left: 70px;
-        padding: 3px 12px;
-        font-size: 10px;
+        top: 0px;
+        left: 50px;
       }
     }
 
@@ -678,7 +676,9 @@
       <li>
         <a href="/chat" class="notification">
           <span>Chat</span>
-          <!-- <span class="badge">3</span> -->
+          @if(session()->get('msg'))
+          <span class="badge">{{session()->get('msg')}}</span>
+          @endif
         </a>
       </li>
       @if(Session::has('user'))

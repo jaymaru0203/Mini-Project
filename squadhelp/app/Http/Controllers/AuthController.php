@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatMessage;
+use App\Models\ChatRoom;
 use Illuminate\Http\Request;
 use App\Models\Nuser;
 use App\Models\ReportAnswer;
 use App\Models\ReportUser;
+use App\Models\Log;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
@@ -25,12 +29,11 @@ class AuthController extends Controller
 
 			'user_email' => 'required|email|ends_with:@somaiya.edu',
 
-			'password' => 'bail|required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@&]).*$/',
+			'password' => 'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
 		], [
 			'user_email.ends_with'  => 'Kindly Signup Using a Valid Somaiya Email ID',
-			'password.regex' => 'Password must contain at least one uppercase or lowercase letter, number and special character'
+			'password.regex' => 'Password must contain atleast 1 Alphabet and 1 Number'
 		]);
-
 
 		$result = Nuser::where('user_email', '=', $req->user_email)->count();
 
@@ -79,6 +82,12 @@ class AuthController extends Controller
 		$sessionOTP = $req->session()->get('otp');
 		if ($formOTP == $sessionOTP) {
 			session()->forget('otp');
+
+			$log = new Log;
+			$log->email = $email;
+			$log->log = now();
+			$log->save();
+
 			return redirect('/')->with('success', "User Registered Successfully");
 		} else {
 			session()->forget('otp');
@@ -123,6 +132,21 @@ class AuthController extends Controller
 				echo "You are logged in Successfully";
 				$req->session()->put('user', $result[0]->user_email);
 				$req->session()->put('user_img', $result[0]->image);
+				$email = $result[0]->user_email;
+
+				$count = 0;
+
+				$check = Log::where('email', $email)->first()->log;
+				$count = ChatMessage::where('receiver', $email)->where('created_at', '>', $check)->count();
+
+				if($count > 0){
+					$req->session()->put('msg', $count);
+				}
+
+				$log = Log::where('email', $email)->first();
+				$log->log = now();
+				$log->save();				
+
 				return redirect('/');
 			} else {
 				$req->session()->flash('error', 'Password Incorrect!!!');
@@ -135,6 +159,12 @@ class AuthController extends Controller
 	function logout(Request $req)
 	{
 		if (session()->has('user')) {
+
+			$email = $req->session()->get('user');
+			$log = Log::where('email', $email)->first();
+			$log->log = now();
+			$log->save();
+
 			$req->session()->flush();
 			return redirect('login');
 		}

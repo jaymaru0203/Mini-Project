@@ -49,13 +49,13 @@ class ProfileController extends Controller
 
             'user_email' => 'email',
 
-            'old_password' => 'bail|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@&]).*$/',
+            'old_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
 
-            'new_password' => 'bail|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@&]).*$/',
+            'new_password' => 'bail|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
 
         ], [
-            'old_password.regex' => 'Password must contain at least one uppercase or lowercase letter, number and special character',
-            'new_password.regex' => 'Password must contain at least one uppercase or lowercase letter, number and special character',
+            'old_password.regex' => 'Password must contain atleast 1 Alphabet and 1 Number',
+            'new_password.regex' => 'Password must contain atleast 1 Alphabet and 1 Number',
 
         ]);
 

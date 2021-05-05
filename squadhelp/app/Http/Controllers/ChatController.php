@@ -11,6 +11,7 @@ use App\Models\Nuser;
 class ChatController extends Controller
 {
     public function rooms(Request $req){
+        session()->forget('msg');
         $email = $req->session()->get('user');
         $sql = DB::select("SELECT * FROM chat_rooms WHERE email1='$email' OR email2='$email'");
         return view('chat', ['chat_rooms'=>$sql]);
@@ -23,9 +24,17 @@ class ChatController extends Controller
     }
 
     public function message(Request $req){
+        $em = ChatRoom::where('id', $req->chatRoomID)->first();
+        if($em->email1 == $req->session()->get('user')){
+            $rec = $em->email2;
+        }
+        else{
+            $rec = $em->email1;
+        }
         $msg = new ChatMessage();
         $msg->chatRoomID = $req->chatRoomID;
         $msg->message = $req->message;
+        $msg->receiver = $rec;
         $msg->sender = $req->session()->get('user');
         $msg->save();
         $id = $req->chatRoomID;
