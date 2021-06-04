@@ -51,9 +51,13 @@ Route::get("downvote/{answer_id}",[AnswerController::class,'downVote'])->middlew
 
 Route::get("reportA/{answer_id}",[ReportController::class,'reportA'])->middleware(['usersession','otpsession']);
 
+Route::get("reportQ/{question_id}",[ReportController::class,'reportQ'])->middleware(['usersession','otpsession']);
+
 Route::get("reportU/{id}",[ReportController::class,'reportU'])->middleware(['usersession','otpsession']);
 
 Route::post("delAns/{answer_id}",[ReportController::class,'delAns']);
+
+Route::post("delQs/{question_id}",[ReportController::class,'delQs']);
 
 Route::post("banUser/{user_id}",[ReportController::class,'banUser']);
 
@@ -77,6 +81,16 @@ Route::get('/otp', function () {
 	}
 });
 
+Route::get('/securitycode', function () {
+	if(session()->has('security')){
+		return view('securitycode');
+	}elseif (session()->has('user')){
+		return redirect('/');
+	}else{
+		return redirect('forgotpassword');
+	}
+});
+
 Route::get('/login', function () {
 	if(session()->has('user')){
 		return redirect('/');
@@ -92,15 +106,39 @@ Route::get('/admin', function () {
     return view('login');}
 });
 
+Route::get('/forgotpassword', function () {
+	if(session()->has('user')){
+		return redirect('/');
+	}
+	else{
+		return view('forgotpassword');}
+	}
+);
+
+Route::post("/forgotpasswordform", [AuthController::class, 'forgotpassword']);
+
 Route::get("/adminPage",[AuthController::class,'admin']);
 
 Route::get("/logout",[AuthController::class,'logout'])->middleware(['usersession','otpsession']);
 
-Route::post('loginuser',[Authcontroller::class,'loginuser']);
+Route::post('loginuser',[AuthController::class,'loginuser']);
 
-Route::post('signupuser',[Authcontroller::class,'signupuser']);
+Route::post('signupuser',[AuthController::class,'signupuser']);
 
-Route::post('submitOTP',[Authcontroller::class,'verifyOTP']);
+Route::post('submitOTP',[AuthController::class,'verifyOTP']);
+
+Route::post('submitsecuritycode',[AuthController::class,'verifysecuritycode']);
+
+Route::post('resetpasswordform',[AuthController::class,'verifyresetpassword']);
+
+Route::get('/resetpassword', function () {
+	if(session()->has('userEmail')){
+		return view('resetpassword');
+	}elseif(session()->has('user')){
+		return redirect('/');
+	}else{
+    return redirect('forgotpassword');}
+});
 
 Route::get('/ask', function () {
     return view('ask');
@@ -113,6 +151,8 @@ Route::post('editprofile', [ProfileController::class, "editprofile"]);
 Route::post('editimage', [ProfileController::class, "editimage"]);
 
 Route::post('question', [QuestionController::class, "postQuestion"]);
+
+Route::get('about', [AuthController::class, "about"]);
 
 
 

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BannedUser;
 use App\Models\ChatMessage;
 use App\Models\ChatRoom;
 use Illuminate\Http\Request;
 use App\Models\Nuser;
+use App\Models\ReportQuestion;
 use App\Models\ReportAnswer;
 use App\Models\ReportUser;
 use App\Models\Log;
@@ -67,7 +69,7 @@ class AuthController extends Controller
 				$messages->subject('Welcome to SquadHelp');
 			});
 			$req->session()->put('user', $req->user_email);
-			$req->session()->put('user_img', "null.jpg");
+			$req->session()->put('user_img', "null.png");
 			return redirect('otp');
 		} else {
 			$req->session()->flash('register_status', 'This Email already exists.');
@@ -101,6 +103,56 @@ class AuthController extends Controller
 		}
 	}
 
+	public function forgotpassword(Request $req){
+		$user = Nuser::where('user_email', $req->email)->count();
+		if($user<1){
+			$req->session()->flash('error', 'Email Id does not exist. Please Signup!');
+			return redirect('forgotpassword');
+		}
+		else{
+			$req->session()->put('userEmail', $req->email);
+			$security = rand(1000, 9999);
+			$req->session()->put('security', $security);
+			$data = ["security" => $security];
+			Mail::send('securitycodemail', $data, function ($messages) use ($req) {
+				$messages->to($req->email);
+				$messages->subject('Security Code for Password Reset');
+			});
+			return redirect('securitycode');
+		}
+	}
+
+	public function verifysecuritycode(Request $req){
+		$email = $req->session()->get('userEmail');
+		$securitycodeform = $req->security;
+		$securitycodesession = $req->session()->get('security');
+		if($securitycodeform == $securitycodesession){
+			session()->forget('security');
+			return redirect('resetpassword');
+		}	
+		else{
+			session()->forget('security');
+			session()->forget('userEmail');
+			$req->session()->flash('register_status', 'Incorrect Security Code Entered!');
+			return redirect('forgotpassword');
+		}
+	}
+
+	public function verifyresetpassword(Request $req){
+		$req->validate(
+			[
+				'password' => 'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/',
+				'confirmpassword' => 'bail|required|min:6|regex:/^(?=.*[a-z])(?=.*\d).+$/|same:password'
+			]
+		);
+
+		$user = Nuser::where('user_email', $req->session()->get('userEmail'))->first();
+		$user->password = Hash::make($req->password);
+		$user->save();
+		$req->session()->forget('userEmail');
+		$req->session()->flash('error', 'Password Reset Successfully!');
+		return redirect('login');
+	}
 
 	function loginuser(Request $req)
 	{
@@ -112,7 +164,11 @@ class AuthController extends Controller
 			'password' => 'required',
 		]);
 
-
+		$banned = BannedUser::where('user_email', '=', $req->user_email)->count();
+		if($banned > 0){
+			$req->session()->flash('error', 'Account Banned Permanently!');
+			return redirect('login');
+		}
 		$result = Nuser::where('user_email', '=', $req->user_email)->get();
 		$res = json_decode($result, true);
 
@@ -179,15 +235,20 @@ class AuthController extends Controller
 	public function admin()
 	{
 		$user = Nuser::all();
-		$reportedA = ReportAnswer::all();
+		$reportedQ = ReportQuestion::distinct()->get(['question_id', 'question', 'name', 'email']);
+		$reportedA = ReportAnswer::distinct('answer_id')->get(['answer_id', 'answer', 'name', 'email']);
 		$reportedU = ReportUser::all();
 
-		return view('admin', ['users' => $user, 'reportedA' => $reportedA, 'reportedU' => $reportedU]);
+		return view('admin', ['users' => $user, 'reportedQ'=>$reportedQ, 'reportedA' => $reportedA, 'reportedU' => $reportedU]);
 	}
 
 	public static function getUser($email)
 	{
 		$user = Nuser::where('user_email', $email)->first();
 		return $user;
+	}
+
+	public function about(Request $req){
+		return view('about');
 	}
 }

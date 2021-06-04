@@ -43,6 +43,8 @@
     background-color: #ff2316;
     color: white;
     border-radius: 5px;
+    word-wrap: normal;
+    white-space: nowrap;
   }
 
   .selectdiv select {
@@ -78,7 +80,7 @@
   .selectdiv select {
     -webkit-appearance: none;
   }
-
+  
 
   @media screen and (max-width: 650px) {
     h2.typeQ {
@@ -250,7 +252,8 @@
 
       <div class="post-date">
         <h2 class="typeQ">{{ $q->type_of_question }}</h2>
-        <p>{{ $q->created_at }}</p>
+        
+        <p>{{ $q->created_at }} <br> <a href="/reportQ/{{$q->question_id}}" class="reportQuestion">Report Question</a></p>
       </div>
 
     </div>

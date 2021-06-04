@@ -286,7 +286,7 @@
         </select>
       </div>
       <span class="error">@error('type'){{$message}}@enderror</span>
-    </div><br>
+    </div><p class="text-muted text-center">Kindly Check Once for Similar Questions Before Posting Yours!<br>This will Increase the Chances of Your Question being Answered Quicker.</p>
     <div class="px-5 pt-3 mx-5 my-btn-div">
       <button type="submit" class="btn my-btn btn-lg btn-block">
         Add Question

@@ -1,6 +1,6 @@
 @extends('Master.master')
 
-@section('title','Login')
+@section('title','Reset Password')
 
 @section('header')
 <style type="text/css">
@@ -190,9 +190,9 @@
     <div class="row m-0">
       <div class="col-lg-6  align-self-center p-0">
         <div class="row m-0 justify-content-center">
-          <form action="/loginuser" method="post">
+          <form action="/resetpasswordform" method="post">
             @csrf
-            <div class="logdet">Welcome Back</div>
+            <div class="logdet">Reset Password</div>
             @if(Session::get('error'))
 
             <h6 style="text-align: center">{{ Session::get('error') }}</h6>
@@ -200,21 +200,17 @@
             @endif
             <div class="form-group">
               <!-- <label for="name">Email</label> -->
-              <input type="text" class="form-control" name="user_email" placeholder="Your Email">
-            </div> <span class="errors">@error('user_email'){{$message}}@enderror</span>
+              <input type="password" class="form-control" name="password" placeholder="New Password">
+            </div> <span class="errors">@error('password'){{$message}}@enderror</span>
             <div class="form-group">
               <!--  <label for="pass">Password</label> -->
-              <input type="password" name="password" class="form-control" id="pass" placeholder="Your Password">
-            </div><span class="errors">@error('password'){{$message}}@enderror</span>
-             <div class="input-group">
-                  <label for="forgot-password" class="col-6 p-0">
-                    <a href="/forgotpassword" style="font-size: 14px;">Forgot Password?</a>
-                  </label>
-                </div>
+              <input type="password" name="confirmpassword" class="form-control" id="pass" placeholder="Confirm Password">
+            </div><span class="errors">@error('confirmpassword'){{$message}}@enderror</span>
+
             <div class=" form-group d-flex justify-content-center" id="btn">
-              <button type="submit" class="btn btn-block">Sign In</button>
+              <button type="submit" class="btn btn-block">Reset</button>
             </div>
-            <p class="foot">Don't have an account yet?<a href="/signup" style="color: #ce907e;padding-left: 3px;text-decoration-line: underline;">Sign up</a></p>
+
           </form>
         </div>
       </div>

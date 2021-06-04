@@ -431,6 +431,7 @@
 <div class="tab">
     <h2>ADMIN</h2>
     <button class="tablinks" onclick="openCity(event, 'users')" id="defaultOpen">Users</button>
+    <button class="tablinks" onclick="openCity(event, 'reportedQuestions')">Reported Questions</button>
     <button class="tablinks" onclick="openCity(event, 'reportedAnswers')">Reported Answers</button>
     <button class="tablinks" onclick="openCity(event, 'reportedUsers')">Reported Users</button>
     <a href="/login/" style="all: unset; color: inherit;"><button class="tablinks" onclick="openTab(event, 'logout')">Logout</button></a><br><br><hr><br>
@@ -472,6 +473,49 @@
 
     </table>
 
+    </div>
+</div>
+
+<div id="reportedQuestions" class="tabcontent">
+  <div class="showAll">
+      <h2>Reported Questions</h2>
+      <table>
+      <tr>
+          <th>ID</th>
+          <th>Question</th>
+          <th>Name of Questioner</th>
+          <th>Email ID</th>
+          <th>No. of Answers</th>
+          <th>Delete Question</th>
+      </tr>
+
+          @foreach($reportedQ as $qs)
+
+            <tr>
+                <td>{{ $qs->question_id }}</td>
+                <td>{{ $qs->question }}</td>
+                <td>{{ $qs->name }}</td>
+                <td>{{ $qs->email }}</td>
+                <td>{{ \App\Http\Controllers\ReportController::getAnswerCount($qs->question_id) }}</td>
+                <td><button style="padding: 5px;" class="edBtn" onclick="document.getElementById('{{ $qs->question_id }}').style.display='block'">Delete</button></td>
+            </tr>
+
+            <!-- Delete Modal -->
+            <div id="{{ $qs->question_id }}" class="modal">
+              <div class="modal-content">
+                  <span class="closeDeleteModal" onclick="document.getElementById('{{ $qs->question_id }}').style.display='none'">&times;</span>
+                  <form action="/delQs/{{ $qs->question_id }}" method="POST" style="margin-bottom: 10px;margin-top: -30px; background:none;">
+                    @csrf
+                    <h2 class="heading">Delete Question</h2>
+                    <center><hr>
+                        <h3>Are you sure you want to delete this Question by {{ $qs->name }}?</h3>
+                        <input type="submit" value="Delete Question" name="delQs" class="button">
+                    </center>
+                  </form>
+              </div>
+            </div>
+            @endforeach
+      </table>
     </div>
 </div>
 

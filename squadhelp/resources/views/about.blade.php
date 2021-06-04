@@ -1,6 +1,6 @@
 @extends('Master.master')
 
-@section('title','Login')
+@section('title','About Us')
 
 @section('header')
 <style type="text/css">
@@ -135,9 +135,16 @@
     /* only if you want fixed height */
   }
 
+  .about{
+      text-align: justify;
+  }
+
   @media (max-width: 990px) {
     form {
       margin-top: 50px;
+    }
+    .about-heading{
+        margin-top: 120px !important;
     }
   }
 
@@ -170,7 +177,6 @@
     form {
       margin-top: 50px;
     }
-
   }
 
   button:focus {
@@ -188,34 +194,13 @@
 <div class="wrapper mt-3">
   <div class="container-fluid p-0">
     <div class="row m-0">
-      <div class="col-lg-6  align-self-center p-0">
+      <div class="col-lg-6 align-self-center p-0">
         <div class="row m-0 justify-content-center">
-          <form action="/loginuser" method="post">
-            @csrf
-            <div class="logdet">Welcome Back</div>
-            @if(Session::get('error'))
-
-            <h6 style="text-align: center">{{ Session::get('error') }}</h6>
-
-            @endif
-            <div class="form-group">
-              <!-- <label for="name">Email</label> -->
-              <input type="text" class="form-control" name="user_email" placeholder="Your Email">
-            </div> <span class="errors">@error('user_email'){{$message}}@enderror</span>
-            <div class="form-group">
-              <!--  <label for="pass">Password</label> -->
-              <input type="password" name="password" class="form-control" id="pass" placeholder="Your Password">
-            </div><span class="errors">@error('password'){{$message}}@enderror</span>
-             <div class="input-group">
-                  <label for="forgot-password" class="col-6 p-0">
-                    <a href="/forgotpassword" style="font-size: 14px;">Forgot Password?</a>
-                  </label>
-                </div>
-            <div class=" form-group d-flex justify-content-center" id="btn">
-              <button type="submit" class="btn btn-block">Sign In</button>
-            </div>
-            <p class="foot">Don't have an account yet?<a href="/signup" style="color: #ce907e;padding-left: 3px;text-decoration-line: underline;">Sign up</a></p>
-          </form>
+          <h2 class="my-4 about-heading">About Us</h2>
+          <p class="about px-5">
+            Due to the pandemic, students cannot communicate to other students and faculty. There has been a communication gap between the college and the students. The freshers who have joined college this year in the middle of the Pandemic have no knowledge of the College and its customs and traditions. The interaction between juniors and seniors is hindered and the doubt solving or helping is not possible. Access to faculty is also limited through mail and hence doubt solving is not as effective as physically in college. <br>
+            With SquadHelp, we wish to help the juniors as well as all those students who are affected by the communication gap. We aim to deploy this project for all the students and faculty to use and create a safe and monitored environment within the college. With all the possible future scope and improvements in mind, we present the first edition of the project - SquadHelp!
+          </p>
         </div>
       </div>
       <div class="col-lg-6 p-0">

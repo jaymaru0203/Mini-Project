@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNusersTable extends Migration
+class CreateReportQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateNusersTable extends Migration
      */
     public function up()
     {
-        Schema::create('nusers', function (Blueprint $table) {
+        Schema::create('report_questions', function (Blueprint $table) {
             $table->id();
+            $table->integer('question_id');
+            $table->string('question');
             $table->string('name');
-            $table->string('status');
-            $table->string('year')->nullable();
-            $table->string('branch');
-            $table->string('user_email');
-            $table->string('password');
-            $table->string('image')->default('null.png');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateNusersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nusers');
+        Schema::dropIfExists('report_questions');
     }
 }

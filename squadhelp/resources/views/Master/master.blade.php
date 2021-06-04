@@ -485,14 +485,19 @@
 
     .post-date {
       position: absolute;
-      right: 1%;
+      right: 2%;
       top: 2%;
     }
 
     .post-date p {
       color: red;
-      margin-top: 50px;
+      margin-top: 30px;
       font-weight: 500;
+    }
+
+    .post-date p a{
+      text-decoration: underline;
+      font-size: 18px;
     }
 
     .question-info {
@@ -556,9 +561,13 @@
 
       .post-date p {
         color: red;
-        margin-top: 53px;
+        margin-top: 50px;
         font-weight: 500;
-        font-size: 10px;
+        font-size: 12px;
+      }
+
+      .post-date p a{
+        font-size: 14px;
       }
 
       .post-container h1 {
@@ -671,7 +680,7 @@
     <div class="logo"><img src="{{ asset('images/logo.png') }}" width="180px"></div>
     <div class="nav-items">
       <li><a href="/">Feed</a></li>
-      <li><a href="#">About</a></li>
+      <li><a href="/about">About</a></li>
       <li><a href="/ask">Ask</a></li>
       <li>
         <a href="/chat" class="notification">
